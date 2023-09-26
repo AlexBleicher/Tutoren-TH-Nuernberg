@@ -36,7 +36,7 @@ Falls du noch nie damit gearbeitet hast, ist das ein kleiner Leitfaden.
 ## Repository auf eure lokale Maschine laden
 
 1. Initialisiert ein lokales Repository : ``git init .`` (Macht das in einem neuen Ordner)
-2. Fügt das remote Repository eurer Maschine hinzu: ``git remote add origin git@github.com:USERNAME/Tutoren-TH-Nuernberg.git``
+2. Fügt das remote Repository eurer Maschine hinzu: ``git remote add origin git@github.com:Pand3ru/Tutoren-TH-Nuernberg.git``
 3. Synchronisiert den Branch ``git branch -M main``
 4. Zieht euch das Repository ``git pull``
 5. ``git push -u origin main``
