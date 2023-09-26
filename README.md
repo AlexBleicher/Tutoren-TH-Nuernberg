@@ -38,7 +38,7 @@ Viele von euch werden vermutlich noch nicht mit git in Kontakt gekommen sein. Da
 1. Initialisiert ein lokales Repository : ``git init .`` (Macht das in einem neuen Ordner)
 2. Fügt das remote Repository eurer Maschine hinzu: ``git remote add origin git@github.com:USERNAME/Tutoren-TH-Nuernberg.git``
 3. Synchronisiert den Branch ``git branch -M main``
-4. Zieht euch das Repository ``git pull``
+4. Zieht euch das Repository ``git pull origin main``
 5. ``git push -u origin main``
 
 > Jetzt solltet ihr in eurem Ordner den gesamten Inhalt des auf GitHub gehostetem git-Repository haben
