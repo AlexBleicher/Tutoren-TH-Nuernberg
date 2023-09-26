@@ -5,6 +5,8 @@ Es ist angedacht, dass jeder seine Materialien hochladen kann, sowie die Materia
 
 **WICHTIG**: Ladet bitte um keine Umstände Altklausuren oder Copyright geschütze Inhalte hoch, die ihr nicht selbst erstellt habt!
 
+Ladet eure Datein bitte in den Ordner eures Moduls (Falls noch nicht vorhanden, erstellt ihn) unter eurem Namen/Acronym hoch.
+
 # GIT GUIDE
 Viele von euch werden vermutlich noch nicht mit git in Kontakt gekommen sein. Das ist kein Problem. Hier ein kleiner Guide für die Command-Line
 
