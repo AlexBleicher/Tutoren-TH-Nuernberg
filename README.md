@@ -10,16 +10,16 @@ Viele von euch werden vermutlich noch nicht mit git in Kontakt gekommen sein. Da
 
 ## Das erste mal git/GitHub?
 
-> Ihr werdet in eurer Laufbahn als Informatiker früher oder später mit git in Kontakt kommen. Dazu solltet ihr den Umgang damit beherrschen. 
-> Falls du noch nie damit gearbeitet hast, ist das ein kleiner Leitfaden.
+Ihr werdet in eurer Laufbahn als Informatiker früher oder später mit git in Kontakt kommen. Dazu solltet ihr den Umgang damit beherrschen. 
+Falls du noch nie damit gearbeitet hast, ist das ein kleiner Leitfaden.
 
 1. Was ist git?
 
-> Git ist ein Versionskontrollprogramm. Ihr könnt euch das so vorstellen: Statt einen Text nach jedem Paragraphen in einer Datei zu speichern, um eure Veränderungen im Blick zu haben, könnt ihr git nutzen. Git übernimmt den Prozess des Speicherns eurer Historie. Text=Code, kann aber auch normaler Plain Text o.ä. sein
+-> Git ist ein Versionskontrollprogramm. Ihr könnt euch das so vorstellen: Statt einen Text nach jedem Paragraphen in einer Datei zu speichern, um eure Veränderungen im Blick zu haben, könnt ihr git nutzen. Git übernimmt den Prozess des Speicherns eurer Historie. Text=Code, kann aber auch normaler Plain Text o.ä. sein
 
 2. Was ist GitHub?
 
-> GitHub ist eine Plattform, auf der ihr eure lokalen Repositories online verwalten könnt und den Zugang mit anderen Teilen könnt. Außerdem bietet die Plattform noch sehr viele weitere Features, die aber für den Gebrauch dieses Repositories irrelevant sind.
+-> GitHub ist eine Plattform, auf der ihr eure lokalen Repositories online verwalten könnt und den Zugang mit anderen Teilen könnt. Außerdem bietet die Plattform noch sehr viele weitere Features, die aber für den Gebrauch dieses Repositories irrelevant sind.
 
 3. Wie verbinde ich git mit GitHub?
 
@@ -31,17 +31,17 @@ Viele von euch werden vermutlich noch nicht mit git in Kontakt gekommen sein. Da
 5. Bindet euren ssh-key mit eurem ssh-agent ein.
 - SSH-Agent starten. Unter Linux : ``eval "$(ssh-agent -s)"``
 - ``ssh-add [EUER PRIVATE KEY]``
-> Eigentlich seid ihr ab hier schon fertig. Um eure lokalen Reposiories hochzuladen, findet ihr im folgenden noch eine Anleitung.
+-> Eigentlich seid ihr ab hier schon fertig. Um eure lokalen Reposiories hochzuladen, findet ihr im folgenden noch eine Anleitung.
 
 ## Repository auf eure lokale Maschine laden
 
 1. Initialisiert ein lokales Repository : ``git init .`` (Macht das in einem neuen Ordner)
-2. Fügt das remote Repository eurer Maschine hinzu: ``git remote add origin git@github.com:USERNAME/Tutoren-TH-Nuernberg.git``
+2. Fügt das remote Repository eurer Maschine hinzu: ``git remote add origin git@github.com:Pand3ru/Tutoren-TH-Nuernberg.git``
 3. Synchronisiert den Branch ``git branch -M main``
 4. Zieht euch das Repository ``git pull origin main``
 5. ``git push -u origin main``
 
-> Jetzt solltet ihr in eurem Ordner den gesamten Inhalt des auf GitHub gehostetem git-Repository haben
+-> Jetzt solltet ihr in eurem Ordner den gesamten Inhalt des auf GitHub gehostetem git-Repository haben
 
 ## Ihr seid gute Menschen und wollt eure Materialien teilen?
 
@@ -50,5 +50,5 @@ Viele von euch werden vermutlich noch nicht mit git in Kontakt gekommen sein. Da
 3. ``git commit -m "Schreibt hier rein, was ihr hinzugefügt/verändert habt. Diese Nachricht ist ganz wichtig!"``
 4. Ladet hoch: ``git push -u origin main`` oder ``git push``
 
-> Jetzt sollten alle eure Datein mit hochgeladen sein
+-> Jetzt sollten alle eure Datein mit hochgeladen sein
 
