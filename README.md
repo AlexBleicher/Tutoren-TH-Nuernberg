@@ -1,5 +1,5 @@
 # Informationen zum Git-Repository
-Dieses Repository hat den Zweck, eure Unterrichtsmaterialiern miteinander teilen könnt. 
+Dieses Repository hat den Zweck, eure Unterrichtsmaterialiern miteinander teilen zu können.
 Achtet bitte darauf, dass eure Materialen das Copyright verlieren, sobald diese hier hochgeladen wurden. 
 Es ist angedacht, dass jeder seine Materialien hochladen kann, sowie die Materialien der anderen benutzen kann.
 
