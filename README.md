@@ -1,11 +1,11 @@
 # Informationen zum Git-Repository
-Dieses Repository hat den Zweck, eure Unterrichtsmaterialiern miteinander teilen zu können.
-Achtet bitte darauf, dass eure Materialen das Copyright verlieren, sobald diese hier hochgeladen wurden. 
+Dieses Repository hat den Zweck, eure Unterrichtsmaterialien miteinander zu teilen.
+Achtet bitte darauf, dass eure Materialen das Copyright verlieren, sobald diese hier hochgeladen werden. 
 Es ist angedacht, dass jeder seine Materialien hochladen kann, sowie die Materialien der anderen benutzen kann.
 
-**WICHTIG**: Ladet bitte um keine Umstände Altklausuren oder Copyright geschützte Inhalte hoch, die ihr nicht selbst erstellt habt!
+**WICHTIG**: Ladet bitte unter keinen Umstände Altklausuren oder Copyright geschützte Inhalte hoch, die ihr nicht selbst erstellt habt!
 
-Ladet eure Datein bitte in den Ordner eures Moduls (Falls noch nicht vorhanden, erstellt ihn) unter eurem Namen/Acronym hoch.
+Eure Datein stellt ihr bitte in den Ordner eures Moduls (falls noch nicht vorhanden, erstellt ihn) unter eurem Namen/Acronym bereit.
 
 # GIT GUIDE
 Viele von euch werden vermutlich noch nicht mit git in Kontakt gekommen sein. Das ist kein Problem. Hier ein kleiner Guide für die Command-Line
@@ -21,11 +21,11 @@ Falls du noch nie damit gearbeitet hast, ist das ein kleiner Leitfaden.
 
 2. Was ist GitHub?
 
--> GitHub ist eine Plattform, auf der ihr eure lokalen Repositories online verwalten könnt und den Zugang mit anderen Teilen könnt. Außerdem bietet die Plattform noch sehr viele weitere Features, die aber für den Gebrauch dieses Repositories irrelevant sind.
+-> GitHub ist eine Plattform, auf der ihr eure lokalen Repositories online verwalten und den Zugang mit anderen teilen könnt. Außerdem bietet die Plattform noch sehr viele weitere Features, die aber für den Gebrauch dieses Repositories irrelevant sind.
 
 3. Wie verbinde ich git mit GitHub?
 
-> Um git mit GitHub zu verbinden und eure lokalen Repositories verwalten zu können, müsst ihr folgendes tun:
+> Um git mit GitHub zu verbinden und eure lokalen Repositories verwalten zu können, müsst ihr Folgendes tun (Command-Line):
 1. ssh-keypair erstellen : ``ssh-keygen -t ed 25519``
 2. Auf GitHub oben Rechts auf euer Profil >> Settings >> SSH and GPG keys >> New SSH key
 3. **GANZ WICHTIG**: hier ladet ihr euren **PUBLIC KEY** hoch. Das ist die Datei, die mit .pub endet.
