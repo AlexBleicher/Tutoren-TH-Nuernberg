@@ -26,7 +26,7 @@ Falls du noch nie damit gearbeitet hast, ist das ein kleiner Leitfaden.
 3. Wie verbinde ich git mit GitHub?
 
 > Um git mit GitHub zu verbinden und eure lokalen Repositories verwalten zu können, müsst ihr folgendes tun:
-1. ssh-keypair erstellen : ssh-keygen -t ed 25519
+1. ssh-keypair erstellen : ``ssh-keygen -t ed 25519``
 2. Auf GitHub oben Rechts auf euer Profil >> Settings >> SSH and GPG keys >> New SSH key
 3. **GANZ WICHTIG**: hier ladet ihr euren **PUBLIC KEY** hoch. Das ist die Datei, die mit .pub endet.
 4. Teilt unter keinen Umständen euren Private-Key mit jemand anderem!
