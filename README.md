@@ -3,7 +3,7 @@ Dieses Repository hat den Zweck, eure Unterrichtsmaterialiern miteinander teilen
 Achtet bitte darauf, dass eure Materialen das Copyright verlieren, sobald diese hier hochgeladen wurden. 
 Es ist angedacht, dass jeder seine Materialien hochladen kann, sowie die Materialien der anderen benutzen kann.
 
-**WICHTIG**: Ladet bitte um keine Umstände Altklausuren oder Copyright geschütze Inhalte hoch, die ihr nicht selbst erstellt habt!
+**WICHTIG**: Ladet bitte um keine Umstände Altklausuren oder Copyright geschützte Inhalte hoch, die ihr nicht selbst erstellt habt!
 
 Ladet eure Datein bitte in den Ordner eures Moduls (Falls noch nicht vorhanden, erstellt ihn) unter eurem Namen/Acronym hoch.
 
