@@ -47,7 +47,7 @@ Eigentlich seid ihr ab hier schon fertig. Um eure lokalen Reposiories hochzulade
 
 -> Jetzt solltet ihr in eurem Ordner den gesamten Inhalt des auf GitHub gehostetem git-Repository haben
 
-## Ihr seid gute Menschen und wollt eure Materialien teilen?
+## Ihr seid soziale Menschen und wollt eure Materialien teilen?
 
 1. Pulled nochmal, damit alles am ende gut läuft : ``git pull``
 2. Fügt eure Datein hinzu : ``git add .`` (. bezieht sich auf den gesamten Inhalt des aktuellen Ordners. Stattdessen könnt ihr auch einfach Dateinamen schreiben)
