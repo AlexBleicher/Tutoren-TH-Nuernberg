@@ -45,7 +45,7 @@ Eigentlich seid ihr ab hier schon fertig. Um eure lokalen Reposiories hochzulade
 4. Zieht euch das Repository ``git pull origin main``
 5. ``git push -u origin main``
 
--> Jetzt solltet ihr in eurem Ordner den gesamten Inhalt des auf GitHub gehostetem git-Repository haben
+Jetzt solltet ihr in eurem Ordner den gesamten Inhalt des auf GitHub gehostetem git-Repository haben
 
 ## Ihr seid soziale Menschen und wollt eure Materialien teilen?
 
@@ -54,5 +54,5 @@ Eigentlich seid ihr ab hier schon fertig. Um eure lokalen Reposiories hochzulade
 3. ``git commit -m "Schreibt hier rein, was ihr hinzugefügt/verändert habt. Diese Nachricht ist ganz wichtig!"``
 4. Ladet hoch: ``git push -u origin main`` oder ``git push``
 
--> Jetzt sollten alle eure Datein mit hochgeladen sein
+Jetzt sollten alle eure Datein mit hochgeladen sein
 
