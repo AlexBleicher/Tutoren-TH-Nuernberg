@@ -1,0 +1,244 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage{fancyhdr}
+\usepackage{fancyheadings}
+\usepackage[ngerman,german]{babel}
+\usepackage{german}
+\usepackage[utf8]{inputenc}
+%\usepackage[latin1]{inputenc}
+\usepackage[active]{srcltx}
+\usepackage{algorithm}
+\usepackage[noend]{algorithmic}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{bbm}
+\usepackage{enumerate}
+\usepackage{graphicx}
+\usepackage{ifthen}
+\usepackage{listings}
+\usepackage{struktex}
+\usepackage{hyperref}
+\usepackage{tikz}
+\usetikzlibrary{positioning,automata}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%% EDIT THIS PART %%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\Fach}{Statistik}
+\newcommand{\Name}{Robin Feldmann}
+\newcommand{\Tutorium}{}
+\newcommand{\Semester}{OHM}
+\newcommand{\KlausurLoesung }{SoSe2020} %  <-- UPDATE ME
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\setlength{\parindent}{0em}
+\topmargin -1.0cm
+\oddsidemargin 0cm
+\evensidemargin 0cm
+\setlength{\textheight}{9.2in}
+\setlength{\textwidth}{6.0in}
+
+%%%%%%%%%%%%%%%
+%% Aufgaben-COMMAND
+\newcommand{\Aufgabe}[1]{
+  {
+  \vspace*{0.5cm}
+  \textsf{\textbf{Aufgabe #1}}
+  \vspace*{0.2cm}
+  
+  }
+}
+
+\newcommand{\Definition}[1]{
+  {
+  \vspace*{0.5cm}
+  \textsf{\textbf{#1}}
+  \vspace*{0.2cm}
+  
+  }
+}
+
+%%%%%%%%%%%%%%
+\hypersetup{
+    pdftitle={\Fach{}: Übungsblatt \KlausurLoesung{}},
+    pdfauthor={\Name},
+    pdfborder={0 0 0}
+}
+
+\lstset{ %
+language=java,
+basicstyle=\footnotesize\tt,
+showtabs=false,
+tabsize=2,
+captionpos=b,
+breaklines=true,
+extendedchars=true,
+showstringspaces=false,
+flexiblecolumns=true,
+}
+
+\title{Übungsblatt Deterministische Endliche Automaten}
+\author{\Name{}}
+
+\begin{document}
+\thispagestyle{fancy}
+\lhead{\sf \large \Fach{} \\ \small \Name{} }
+\rhead{\sf \Semester{} \\  Tutorium\Tutorium{}}
+\vspace*{0.2cm}
+\begin{center}
+\LARGE \sf \textbf{Wahrscheinlichkeitsrechnung}
+\end{center}
+\vspace*{0.2cm}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Insert your solutions here %%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\Definition{Wahrscheinlichkeitsraum}
+Das Tripel $(\Omega, F, \mathbb{P})$ heißt Wahrscheinlichkeitsraum. Mit:
+\begin{enumerate}[a)]
+\item $\Omega$ Ergebnisraum
+\item F Ereignissmenge ( $=P(\Omega)$)
+\item $\mathbb{P}: F \rightarrow \mathbb{R}$ Wahrscheinlichkeitsverteilung mit:
+\begin{enumerate}[1)]
+\item $0 \leq P(A) \leq 1 \quad  \forall A \in F$
+\item $P(\Omega) = 1$
+\item $ P(A\cup B)=P(A)+P(B)$ wenn $A\cap B = \emptyset$
+\end{enumerate}
+\end{enumerate}
+
+\Definition{Bedingte Wahrscheinlichkeit}
+$$
+P(B|A) = \frac{P(A\cap B)}{P(A)}$$
+
+\Definition{Rechenregeln}
+$ P(\emptyset) = 0 $ \\
+$ P(A^c) = 1 - P(A) $ \\
+$ P(A\cup B) = P(A) + P(B) - P(A\cap B) $ \\
+$ P(A^c |B)= 1 - P(A | B)$ \\
+$ P(A\cap B) = P(B| A) \cdot P(A) = P(A |B) \cdot P(B) $ \\
+$ P(A) = P(A\cap B) + P (A\cap B^c) = P(A |B) \cdot P(B) + P(A |B^c) \cdot P(B^c) $ \\
+$$P(B|A) = \frac{P(A\cap B)}{P(A)} = \frac{P(B)\cdot P(A|B)}{P(A|B)\cdot P(B) + P(A|B^c) \cdot P(B^c)} $$ \\
+
+\Aufgabe{0}
+Standardaufgabentypus. Gegeben:
+$$ P(A)= 0.3 \quad P(B|A) = 0.4 \quad P(B|A^c)=0.6 $$
+Gesucht:
+
+\begin{enumerate}[a)]
+\item $P(A|B)$
+\item $P(A|B^c)$
+\item $P(B)$
+\end{enumerate}
+
+\Aufgabe{0}
+Angenommen 4\% der Bevölkerung können programmieren. Von diesen 4\% die programmieren können, sind 85\% InformatikerInnen. Von denen die nicht programmieren können, sind 0.5\% InformatikerInnen. Wie hoch ist die Wahrscheinlichkeit, dass eine InformatikerIn nicht programmieren kann? Wie hoch ist die Wahrscheinlichkeit, dass ein Mensch der keine InformatikerIn ist, nicht programmieren kann?
+
+\Aufgabe{1}
+Terrorismus im Flugverkehrt: Auf dem Flughafen werden alle Passagiere vorsorglich kontrolliert. Ein Terrorist werde mit Wahrscheinlichkeit 0.98 erkannt und festgenommen. Ein Nicht-Terrorist werde (versehentlich) mit Wahrscheinlichkeit 0.001 für einen Terroristen gehalten und festgenommen. Jeder hunderttausendste Flugpassagier sei (im Durchschnitt) ein Terrorist. 
+Wie groß ist die Wahrscheinlichkeit, dass ein Passagier, der - unter Verdacht ein Terrorist zu sein - festgenommen wird, tatsächlich ein Terrorist ist? \\
+\textbf{
+Verwenden sie bei der Lösung die Bezeichnung T (Passagier ist ein Terrorist), F (Passagier wird festgenommen). 
+}
+(WiSe 1415)
+
+\Aufgabe{2} 
+Ein Laden bezieht Glühbirnen von zwei Herstellern A und B. Der Laden bezieht 70\% seiner Glühbirnen von A. Vom Hersteller A sind erfahrungsgemäß 10\% der Glühbirnen defekt. Vom Hersteller B sind 3\% defekt. Im Lager des Ladens befindet sich noch eine große Schachtel Glühbirnen von einem dieser Hersteller. Es ist nicht mehr bekannt, von welchem der beiden. Die Glühbirnen der beiden Hersteller sind äußerlich nicht zu unterscheiden. Aus der Schachtel wird eine Glühbirne entnommen. Die Überprüfung ergibt, dass sie defekt ist. Mit welcher Wahrscheinlichkeit stammt die Schachtel Glühbirnen von Hersteller A? \\
+\textbf{
+Verwenden Sie bei der Lösung die Bezeichnungen GA (Glühbirnen stammen von A), GB (Glühbirnen stammen von B) und D (Glühbirne ist defekt).
+}
+(WiSe 15/16)
+
+\Aufgabe{3}
+Ein einfacher Spamfilter klassifiziert eine Email als Spammail, faill sie ein Wort aus einer vorgegebenen Liste von Schlüsselwörtern enthält. Mit dieser Methode erkennt der Spamfilter 95\% aller Spammails. Mit einer Wahrscheinlichkeit von 8\% wird auch eine Nicht-Spammail als Spammail ausgewiesen.
+\begin{enumerate}[a)]
+\item Welche bedingten Wahrscheinlichkeiten ergeben sich direkt aus den Aussagen?
+\item Mit welcher Wahrscheinlichkeit ist eine vom Filter als Spammail ausgewiesene Mail tatsächlich eine Spammail, falls es sich bei 20\% aller Mails um Spammails handelt?
+\end{enumerate}
+ (SoSe18).
+ 
+
+\Aufgabe{4}
+In einer Stadt gibt es zwei größere Bevölkerungsgruppen. Die eine die eher etwas reicher und gebildeter ist macht 55\% der Bewohner aus, die andere macht 45\% der Bevölkerung aus. Durch unterschiedliche Milieus und auch vorurteilsgeprägte Polizeiarbeit ergibt sich bei der reicheren und gebildeteren Bevölkerungsgruppe eine Kriminalität von 3\%, während sich bei dem ärmeren Bevölkerungsanteil eine Kriminalität von 10\% ergibt (Gemessen in Staftaten pro Einwohner und Jahr). Berechnen sie die Wahrscheinlichkeit, dass eine Straftat von einem Menschen der privilegierten Schicht begangen wurde. Was bedeuten solche Statistiken für Algorithmen des Maschinellen Lernens in der Zukunft?
+
+
+\Aufgabe{5}
+Ein Test auf eine Infektion ist mit 95\%iger Sicherheit positiv, falls eine Person infiziert ist, mit 90\%iger negativ, falls diese nicht infiziert ist.
+Es wird davon ausgegangen, dass in einer Population 2\% aller Personen infiziert sind. Verwenden Sie die Bezeichnung I: Person infiziert und T: Test positiv.
+\begin{enumerate}[a)]
+\item Angenommen, bei einer Person verläuft der Test positiv. Wie groß ist die Wahrscheinlichkeit, dass sie tatsächlich infiziert ist? Geben sie den Rechenweg an!
+\item Angenommen, es stehe ein zweiter Test zur Verfügung, der bei Infektion nur mit 80\%iger Sicherheit positiv ist. Die Ergebnisse der beiden Tests sind bezogen sowohl auf die infizierten als auch auf die nicht infizierten Personen bezogen voneinander unabhängig.
+Wie groß ist die Wahrscheinlichkeit, dass für eine infizierte Person mindestens ein Test positiv ist?
+\end{enumerate}
+ (SoSe20).
+ 
+ 
+\Aufgabe{6}
+In einem Parlament gibt es drei Fraktionen: Die Konservativen, die Linken und die Rechten.
+Aus den letzten Wahlen ging folgende Abgeordnetenverteilung hervor:
+$$
+\begin{tabular}[h]{l|lllllllll}
+Fraktion & Links & Konservativ & Rechts  \\
+\hline
+\% der Sitze & 33\% & 42\% & 25\%   \\
+\end{tabular}
+$$
+Über den Frauenanteil der Abgeordneten ist folgendes bekannt. Wobei $W:=$Abgeordnete ist eine Frau, Abgeordneter ist in $L:=$Linke Fraktion, $K:=$Konservative Fraktion und $R:=$Rechte Fraktion.
+$$
+P(W|L) =0.55\text{,    }P(W|R)=0.13\text{,    }P(W|K)=0.25.
+$$
+\begin{enumerate}[a)]
+\item Bestimme wieviele Frauen es im Parlament gibt.
+\item Mit welcher Wahrscheinlichkeit ist eine Frau in der konservativen Fraktion?
+\item Mit welcher Wahrscheinlichkeit ist ein Mann in der rechten Fraktion?
+\end{enumerate}
+
+\Aufgabe{7}
+Im Bundestag gibt es sechs Fraktionen. Aus den Wahlen 2021 ging folgende Abgeordnetenverteilung hervor:
+$$
+\begin{tabular}[h]{l|lllllllllll}
+Partei & Union & SPD & AFD & FDP & Linke & Grüne \\
+\hline
+\% der Sitze & 0.26 & 0.29 & 0.11 & 0.12 & 0.05 & 0.17   \\
+\end{tabular}
+$$
+Über den Frauenanteil der Abgeordneten ist folgendes bekannt. Wobei $W:=$Abgeordnete ist eine Frau.
+$$
+P(W|Union) =0.23\text{,    }P(W|FDP)=0.24\text{,    }P(W|SPD)=0.42 
+$$
+$$
+P(W|Gruene)=0.6\text{,    }P(W|Linke)=0.54\text{,    }P(W|AFD)=0.13
+$$
+\begin{enumerate}[a)]
+\item Bestimme den Anteil der Frauen im Parlament.
+\item Mit welcher Wahrscheinlichkeit ist eine Frau in der FDP?
+\item Mit welcher Wahrscheinlichkeit ist ein Mann in der AFD?
+\end{enumerate}
+
+
+
+\Aufgabe{8}
+Jeder Mensch gehört einer der Blutgruppen A, B, AB sowie 0 an und hat außerdem den Rhesusfaktor R+ oder R-. Die Häufigkeiten der Blutgruppen:
+$$
+\begin{tabular}[h]{l|llllllllll}
+Blutgruppe & A & B & AB & 0 \\
+\hline
+Häufigkeit  & 42\% & 10\% & 4\% & 44\%  \\
+\end{tabular}
+$$
+Folgende bedingten Wahrscheinlichkeiten sind bekannt:
+$$
+P(R+|A) = P(R+|0)=0.85\text{,    }P(R+|B)=0.8\text{,    }P(R+|AB)=0.75.
+$$
+\begin{enumerate}[a)]
+\item Man bestimme die Wahrscheinlichkeit des Rhesusfaktors R+.
+\item Mit welcher Wahrscheinlichkeit hat ein Mensch mit Rhesusfaktor R+ die Blutgruppe AB?
+\item Mit welcher Wahrscheinlichkeit hat ein Mensch mit Rhesusfaktor R- nicht die Blutgruppe AB?
+\end{enumerate}
+ (SoSe16).
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{document}
+

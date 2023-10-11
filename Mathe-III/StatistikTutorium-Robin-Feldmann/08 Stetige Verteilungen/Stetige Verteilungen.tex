@@ -1,0 +1,189 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage{fancyhdr}
+\usepackage{fancyheadings}
+\usepackage[ngerman,german]{babel}
+\usepackage{german}
+\usepackage[utf8]{inputenc}
+%\usepackage[latin1]{inputenc}
+\usepackage[active]{srcltx}
+\usepackage{algorithm}
+\usepackage[noend]{algorithmic}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{bbm}
+\usepackage{enumerate}
+\usepackage{graphicx}
+\usepackage{ifthen}
+\usepackage{listings}
+\usepackage{struktex}
+\usepackage{hyperref}
+\usepackage{tikz}
+\usetikzlibrary{positioning,automata}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%% EDIT THIS PART %%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\Fach}{Statistik}
+\newcommand{\Name}{Robin Feldmann}
+\newcommand{\Tutorium}{}
+\newcommand{\Semester}{OHM}
+\newcommand{\KlausurLoesung }{SoSe2020} %  <-- UPDATE ME
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\setlength{\parindent}{0em}
+\topmargin -1.0cm
+\oddsidemargin 0cm
+\evensidemargin 0cm
+\setlength{\textheight}{9.2in}
+\setlength{\textwidth}{6.0in}
+
+%%%%%%%%%%%%%%%
+%% Aufgaben-COMMAND
+\newcommand{\Aufgabe}[1]{
+  {
+  \vspace*{0.5cm}
+  \textsf{\textbf{Aufgabe #1}}
+  \vspace*{0.2cm}
+  
+  }
+}
+
+\newcommand{\Definition}[1]{
+  {
+  \vspace*{0.5cm}
+  \textsf{\textbf{#1}}
+  \vspace*{0.2cm}
+  
+  }
+}
+
+%%%%%%%%%%%%%%
+\hypersetup{
+    pdftitle={\Fach{}: Übungsblatt \KlausurLoesung{}},
+    pdfauthor={\Name},
+    pdfborder={0 0 0}
+}
+
+\lstset{ %
+language=java,
+basicstyle=\footnotesize\tt,
+showtabs=false,
+tabsize=2,
+captionpos=b,
+breaklines=true,
+extendedchars=true,
+showstringspaces=false,
+flexiblecolumns=true,
+}
+
+\title{Übungsblatt Deterministische Endliche Automaten}
+\author{\Name{}}
+
+\begin{document}
+\thispagestyle{fancy}
+\lhead{\sf \large \Fach{} \\ \small \Name{} }
+\rhead{\sf \Semester{} \\  Tutorium\Tutorium{}}
+\vspace*{0.2cm}
+\begin{center}
+\LARGE \sf \textbf{Stetige Verteilungen}
+\end{center}
+\vspace*{0.2cm}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Insert your solutions here %%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\Definition{Exponentialverteilung}
+Dichtefunktion:
+\begin{equation}
+  f(x) = \begin{cases}
+     \lambda \cdot e^{-\lambda x} & \text{f"ur } x > 0 \\
+    0 & \text{sonst }  
+   \end{cases}
+\end{equation}
+Verteilungsfunktion:
+\begin{equation}
+  F(x) = \begin{cases}
+  1 - e^{-\lambda x} &  \text{f"ur } x > 0 \\
+   0& \text{sonst }  
+    
+   \end{cases}
+\end{equation}
+Erwartungsswert:
+$$ \mathbb{E}(X) = \frac{1}{\lambda} $$
+Varianz:
+$$ \mathbb{V}(X) = \frac{1}{\lambda^2} $$
+
+\Definition{Normalverteilung}
+Dichtefunktion:
+$$ f(x) = \frac{1}{\sqrt{2\pi}\cdot b} \cdot e ^{- \frac{(x-a)^2}{2\cdot b^2} }$$
+Erwartungsswert:
+$$ \mathbb{E}(X) = a $$
+Varianz:
+$$ \mathbb{V}(X) = b^2$$
+ $F(x)$ lässt sich nicht mathematisch exakt ausrechnen. 
+ Für $a=0$ und $b^2 = 1$ kann man die Ergebnisse in der Tabelle nachschauen. In der Tabelle stehen nur positive Werte, für negative benutzt man:
+ $$ \Phi(-x) = 1 - \Phi(x) $$ 
+ Wenn $a \neq 0$ oder $b \neq 1 $ benutzt man:
+ $$ \Phi_{a,b^2}(X) = \Phi_{0,1}(\frac{x-a}{b}) $$
+ 
+ 
+
+\Definition{Zentraler Grenzwertsatz}
+Summe von beliebigen Zufallsvariablen konvergiert gegen die Normalverteilung. \\
+Annäherung an die Binominalverteilung: \\
+Falls $n\cdot p \cdot (1-p) \geq 9$ ist die annäherung ausreichen gut.
+$$ a = n\cdot p = \text{Erwartungswert der Binominalverteilung}$$
+$$ b^2 = n\cdot p \cdot (1-p)  = \text{Varianz der Binominalverteilung}$$ 
+$$ F(x) = \mathbb{P}(X \leq x) = \Phi_{n\cdot p ,n\cdot p \cdot (1-p) }(x) = \Phi( \frac{x - n\cdot p}{ \sqrt{n\cdot p \cdot (1-p)}}) $$
+
+\Aufgabe{1}
+Die fehlerfreie Laufzeit bis zum technischen Versagen einer Maschine sei exponentialverteilt und beträgt durchschnittlich 50 Tage.
+\begin{enumerate}[a)]
+\item Bestimme die Verteilungsfunktion der Laufzeit.
+\item Wie wahrscheinlich ist ein technisches Versagen innerhalb der ersten 50 Tage?
+\item Wie wahrscheinlich ist eine fehlerfreie Laufzeit von mehr als 100 Tagen?
+\item Wie wahrscheinlich ist ein technisches Versagen nach 50 und vor 100 Tagen?
+\end{enumerate} 
+
+\Aufgabe{2}
+Etwa 1\% der Bevölkerung hat zwei unterschiedliche Augenfarben. Wie hoch ist die Wahrscheinlichkeit, dass unter 1000 zufällig ausgewählten Menschen weniger als 10 unterschiedliche Augenfarben haben? Wie groß ist die Wahrscheinlichkeit, dass es weniger als 5 sind und wie groß ist die Wahrscheinlichkeit, dass es mehr als 20 sind? Wie groß ist die Wahrscheinlichkeit, dass es zwischen 7 und 13 sind?
+ 
+\Aufgabe{3}
+X sei eine Zufallsvariable mit: $ \mathbb{E}(X)= 2$ und $ \mathbb{V}(X)=3 $. Für ein Experiment soll die Summe Z von 500 unabhängigen dieser Zufallsvariablen betrachtet werden.
+Berechnen sie Erwartungswert und Varianz von Z. Berechnen sie mithilfe des zentralen Grenzwertsatzes die Wahrscheinlichkeiten, dass Z höchstens 950 und größer als 1050 ist. 
+
+\Aufgabe{4}
+Die Suchzeit X nach der Ursache eines Defekts in einem technischen Gerät sei exponentialverteilt. Bekannt: Die mittlere Suchzeit beträgt 100 Tage.
+\begin{enumerate}[a)]
+\item Man gebe die Verteilungsfunktion zu X an.
+\item Wie wahrscheinlich ist eine Suchzeit zwischen 50 und 150 Tagen?
+\end{enumerate} (SoSe16) 
+
+
+
+\Aufgabe{5}
+In deutschen Texten tritt der Buchstabe e mit einer Häufigkeit von 17.4\% auf. Wie groß ist die Wahrscheinlichkeit, dass unter 80 zufällig aus einem langen deutschen Text ausgewählten Zeichen mindestens 20 mal der Buchstabe e ist? Eine näherungswesie Lösung ist ausreichend. (SoSe18)
+
+\Aufgabe{6}
+Im Rahmen einer Simulation sollen 250 unabhängige Realisierungen von einer Zufallsvariable X erzeugt und anschließend aufsummiert werden. Berechnen Sie mit Hilfe des Zentralen Grenzwertsatzes eine Näherung für die Wahrscheinlichkeit, dass diese Summe den Wert 395 nicht überschreitet. Für X gilt: $ \mathbb{E}(X)= \frac{3}{2}$ und $ \mathbb{V}(X)=\frac{3}{4} $. (SoSe20)
+
+
+
+
+
+\Aufgabe{5}
+Wikipedia zufolge leidet ca. jeder 500 Deutsche an einer Glutenintoleranz. Wie hoch ist die Wahrscheinlichkeit, dass unter 50 Bekannten keiner, einer oder zwei an Glutenintoleranz leiden? Wie hoch ist die Wahrscheinlichkeit, dass es mehr als drei sind?
+
+\Aufgabe{6}
+Etwa 1\% der Bevölkerung hat zwei unterschiedliche Augenfarben. Wie hoch ist die Wahrscheinlichkeit, dass unter 100 zufällig ausgewählten Menschen keiner, höchstens zwei oder mehr als zwei unterschiedliche Augenfarben haben?
+
+
+\Aufgabe{6}
+Der Deutschen Bahn zufolge fällt in Deutschland ca. jeder 100 Zug aus. Am Nürnberg Hauptbahnhof fahren täglich rund 800 Züge ab. Wie hoch ist die Wahrscheinlichkeit, dass höchstens drei Züge ausfallen? Wie hoch die Wahrscheinlichkeit, dass mehr als drei ausfallen?
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{document}
+

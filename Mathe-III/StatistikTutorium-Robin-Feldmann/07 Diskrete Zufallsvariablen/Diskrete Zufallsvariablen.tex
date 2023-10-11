@@ -1,0 +1,173 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage{fancyhdr}
+\usepackage{fancyheadings}
+\usepackage[ngerman,german]{babel}
+\usepackage{german}
+\usepackage[utf8]{inputenc}
+%\usepackage[latin1]{inputenc}
+\usepackage[active]{srcltx}
+\usepackage{algorithm}
+\usepackage[noend]{algorithmic}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{bbm}
+\usepackage{enumerate}
+\usepackage{graphicx}
+\usepackage{ifthen}
+\usepackage{listings}
+\usepackage{struktex}
+\usepackage{hyperref}
+\usepackage{tikz}
+\usetikzlibrary{positioning,automata}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%% EDIT THIS PART %%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\Fach}{Statistik}
+\newcommand{\Name}{Robin Feldmann}
+\newcommand{\Tutorium}{}
+\newcommand{\Semester}{OHM}
+\newcommand{\KlausurLoesung }{SoSe2020} %  <-- UPDATE ME
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\setlength{\parindent}{0em}
+\topmargin -1.0cm
+\oddsidemargin 0cm
+\evensidemargin 0cm
+\setlength{\textheight}{9.2in}
+\setlength{\textwidth}{6.0in}
+
+%%%%%%%%%%%%%%%
+%% Aufgaben-COMMAND
+\newcommand{\Aufgabe}[1]{
+  {
+  \vspace*{0.5cm}
+  \textsf{\textbf{Aufgabe #1}}
+  \vspace*{0.2cm}
+  
+  }
+}
+
+\newcommand{\Definition}[1]{
+  {
+  \vspace*{0.5cm}
+  \textsf{\textbf{#1}}
+  \vspace*{0.2cm}
+  
+  }
+}
+
+%%%%%%%%%%%%%%
+\hypersetup{
+    pdftitle={\Fach{}: Übungsblatt \KlausurLoesung{}},
+    pdfauthor={\Name},
+    pdfborder={0 0 0}
+}
+
+\lstset{ %
+language=java,
+basicstyle=\footnotesize\tt,
+showtabs=false,
+tabsize=2,
+captionpos=b,
+breaklines=true,
+extendedchars=true,
+showstringspaces=false,
+flexiblecolumns=true,
+}
+
+\title{Übungsblatt Deterministische Endliche Automaten}
+\author{\Name{}}
+
+\begin{document}
+\thispagestyle{fancy}
+\lhead{\sf \large \Fach{} \\ \small \Name{} }
+\rhead{\sf \Semester{} \\  Tutorium\Tutorium{}}
+\vspace*{0.2cm}
+\begin{center}
+\LARGE \sf \textbf{Spezielle diskrete Verteilungen}
+\end{center}
+\vspace*{0.2cm}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Insert your solutions here %%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\Definition{Bernoulli Verteilung}
+Wahrscheinlichkeitsfunktion:
+\begin{equation}
+  f(x) = \begin{cases}
+     p & \text{f"ur } x = 1 \\
+    1-p & \text{f"ur } x = 0\\
+    0 & \text{sonst }  
+   \end{cases}
+\end{equation}
+Erwartungsswert:
+$$ \mathbb{E}(X) = p $$
+Varianz:
+$$ \mathbb{V}(X) = p\cdot(1-p) $$
+
+\Definition{Binominal Verteilung}
+Summe n unabhängiger, identisch verteilter Bernoulli-verteilter Zufallsvariablen:
+$$ X:=X_1 + ... + X_n $$
+
+Wahrscheinlichkeitsfunktion:
+\begin{equation}
+  f(x) = \begin{cases}
+     \binom{n}{x}p^x(1-p)^{n-x} & \text{f"ur } x \in \{0,1,... ,n\} \\
+    0 & \text{sonst }  
+   \end{cases}
+\end{equation}
+Erwartungsswert:
+$$ \mathbb{E}(X) = n\cdot p $$
+Varianz:
+$$ \mathbb{V}(X) = n\cdot p\cdot(1-p) $$
+
+
+\Definition{Poisson Verteilung}
+Annäherung der Binominalverteilung bei $n\geq 50$ und $p \leq 0.04 $. \\
+Wahrscheinlichkeitsfunktion:
+\begin{equation}
+  f(x) = \begin{cases}
+   \frac{\lambda^x \cdot e{-\lambda}}{x!} & \text{f"ur } x \in \mathbb{N}_0 \\
+    0 & \text{sonst }  
+   \end{cases}
+\end{equation}
+Erwartungsswert:
+$$ \mathbb{E}(X) = \lambda $$
+Varianz:
+$$ \mathbb{V}(X) = \lambda $$
+
+
+\Aufgabe{1}
+Für eine Ausflugsreise melden sich 15 Teilnehmer an. Aus Erfahrungswerten weiß der Reiseleiter, dass jeder fünfte Teilnehmer kurzfristig absagt. Mit welcher Wahrscheinlichkeit sagt keiner der Teilnehmer ab, mit welcher Wahrscheinlichkeit mehr als drei? Gehen Sie davon aus, dass die Teilnehmer unabhängig voneinander entscheiden.
+
+\Aufgabe{2}
+Durch Transport und Verpackung ist von den Eiern im Supermarkt jedes zehnte beschädigt. Mit welcher Wahrscheinlichkeit sind in einem Karton mit zwölf Eiern höchstens zwei beschädigt, mit welcher Wahrscheinlichkeit mehr als drei? 
+
+\Aufgabe{3}
+Eine Binominalverteilte Zufallsvariable hat den Erwartungswert $\mathbb{E}(X) = 3$ und die Varianz $\mathbb{V}(X)=2$.
+Berechnen Sie die Wahrscheinlichkeit von $X=4$. 
+
+
+
+\Aufgabe{4}
+Eine Binominalverteilte Zufallsvariable hat den Erwartungswert $\mathbb{E}(X) = 3$ und die Varianz $\mathbb{V}(X)=\frac{9}{4}$.
+Berechnen Sie die Wahrscheinlichkeit von $P(X\leq 3) $. 
+
+
+\Aufgabe{5}
+Wikipedia zufolge leidet ca. jeder 500 Deutsche an einer Glutenintoleranz. Wie hoch ist die Wahrscheinlichkeit, dass unter 50 Bekannten keiner, einer oder zwei an Glutenintoleranz leiden? Wie hoch ist die Wahrscheinlichkeit, dass es mehr als drei sind?
+
+\Aufgabe{6}
+Etwa 1\% der Bevölkerung hat zwei unterschiedliche Augenfarben. Wie hoch ist die Wahrscheinlichkeit, dass unter 100 zufällig ausgewählten Menschen keiner, höchstens zwei oder mehr als zwei unterschiedliche Augenfarben haben?
+
+
+\Aufgabe{6}
+Der Deutschen Bahn zufolge fällt in Deutschland ca. jeder 100 Zug aus. Am Nürnberg Hauptbahnhof fahren täglich rund 800 Züge ab. Wie hoch ist die Wahrscheinlichkeit, dass höchstens drei Züge ausfallen? Wie hoch die Wahrscheinlichkeit, dass mehr als drei ausfallen?
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{document}
+

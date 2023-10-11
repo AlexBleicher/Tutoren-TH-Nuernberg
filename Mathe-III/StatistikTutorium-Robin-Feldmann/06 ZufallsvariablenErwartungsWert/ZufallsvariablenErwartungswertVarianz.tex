@@ -1,0 +1,231 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage{fancyhdr}
+\usepackage{fancyheadings}
+\usepackage[ngerman,german]{babel}
+\usepackage{german}
+\usepackage[utf8]{inputenc}
+%\usepackage[latin1]{inputenc}
+\usepackage[active]{srcltx}
+\usepackage{algorithm}
+\usepackage[noend]{algorithmic}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{bbm}
+\usepackage{enumerate}
+\usepackage{graphicx}
+\usepackage{ifthen}
+\usepackage{listings}
+\usepackage{struktex}
+\usepackage{hyperref}
+\usepackage{tikz}
+\usetikzlibrary{positioning,automata}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%% EDIT THIS PART %%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\Fach}{Statistik}
+\newcommand{\Name}{Robin Feldmann}
+\newcommand{\Tutorium}{}
+\newcommand{\Semester}{OHM}
+\newcommand{\KlausurLoesung }{SoSe2020} %  <-- UPDATE ME
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\setlength{\parindent}{0em}
+\topmargin -1.0cm
+\oddsidemargin 0cm
+\evensidemargin 0cm
+\setlength{\textheight}{9.2in}
+\setlength{\textwidth}{6.0in}
+
+%%%%%%%%%%%%%%%
+%% Aufgaben-COMMAND
+\newcommand{\Aufgabe}[1]{
+  {
+  \vspace*{0.5cm}
+  \textsf{\textbf{Aufgabe #1}}
+  \vspace*{0.2cm}
+  
+  }
+}
+
+\newcommand{\Definition}[1]{
+  {
+  \vspace*{0.5cm}
+  \textsf{\textbf{#1}}
+  \vspace*{0.2cm}
+  
+  }
+}
+
+%%%%%%%%%%%%%%
+\hypersetup{
+    pdftitle={\Fach{}: Übungsblatt \KlausurLoesung{}},
+    pdfauthor={\Name},
+    pdfborder={0 0 0}
+}
+
+\lstset{ %
+language=java,
+basicstyle=\footnotesize\tt,
+showtabs=false,
+tabsize=2,
+captionpos=b,
+breaklines=true,
+extendedchars=true,
+showstringspaces=false,
+flexiblecolumns=true,
+}
+
+\title{Übungsblatt Deterministische Endliche Automaten}
+\author{\Name{}}
+
+\begin{document}
+\thispagestyle{fancy}
+\lhead{\sf \large \Fach{} \\ \small \Name{} }
+\rhead{\sf \Semester{} \\  Tutorium\Tutorium{}}
+\vspace*{0.2cm}
+\begin{center}
+\LARGE \sf \textbf{Erwartungswert und Varianz von Zufallsvariablen}
+\end{center}
+\vspace*{0.2cm}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Insert your solutions here %%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\Definition{Erwartungswert - Diskret}
+
+$$ \mathbb{E}(x) = x_1 \cdot \mathbb{P}(x=x_1) + x_2 \cdot \mathbb{P}(x=x_2) \cdot ... = \sum_{i=1}^n x_i p_i $$
+
+\Definition{Erwartungswert - Stetig}
+
+$$ \mathbb{E}(x) =  \int_{-\infty}^{\infty} x\cdot f(x)dx$$
+
+\Definition{Eigenschaften des Erwartungswerts}
+Sei $h(x): \mathbb{R} \rightarrow \mathbb{R} $ eine Funktion, dann gilt: \\
+
+Diskret: $ \mathbb{E}(h(x)) =   \sum_{i=1}^n h(x_i) p_i $  \\
+
+Stetig: $ \mathbb{E}(h(x)) =  \int_{-\infty}^{\infty} h(x)\cdot f(x)dx $ \\
+
+Außerdem gilt: \\
+
+$ \mathbb{E}(h(x) + g(x)) = \mathbb{E}(h(x)) + \mathbb{E}(g(x)) $ \\
+
+
+$ \mathbb{E}(aX+c) = a\mathbb{E}(X) + c $
+
+
+\Definition{Varianz}
+$$  \mathbb{V}(x)= \mathbb{E}((x-\mathbb{E}(x))^2) $$
+
+Oder alternativ:
+
+$$  \mathbb{V}(x)= \mathbb{E}(x^2) - \mathbb{E}(x)^2 $$
+
+\Definition{Varianz - Diskret}
+
+$$   \mathbb{V}(x)= \sum_{i=1}^n (x_i -  \mathbb{E}(x))^2  p_i $$ 
+
+\Definition{Varianz - Stetig}
+
+$$   \mathbb{V}(x)= \int_{-\infty}^{\infty} (x -  \mathbb{E}(x))^2 \cdot f(x)dx$$ 
+
+\Definition{Rechenregeln}
+Für X,Y unabhängige Zufallsvariablen:
+$$ \mathbb{V}(aX + bY) = a^2 \cdot  \mathbb{V}(X) + b^2 \cdot  \mathbb{V}(Y) $$
+$$ \mathbb{V}(X + a) = \mathbb{V}(X) $$ 
+
+\Aufgabe{2}
+Seien X und Y unabhängige Zufallsgrößen mit den Erwartungswerten $\mathbb{E}(X) = 5$, $\mathbb{E}(Y) = 3$ und den Varianzen $\mathbb{V}(X) =1$, $\mathbb{V}(Y) =2$.
+Bestimmen Sie den Erwartungswert und die Varianz folgender Zufallsgrößen:
+\begin{enumerate}[a)]
+\item
+$Z_1 =  2\cdot X $
+\item
+$Z_1 =  X + Y$
+\item
+$Z_1 =  X -  Y$
+\end{enumerate} 
+
+\Aufgabe{2}
+Seien X und Y unabhängige Zufallsgrößen mit den Erwartungswerten $\mathbb{E}(X) = 10$, $\mathbb{E}(Y) = 12$ und den Varianzen $\mathbb{V}(X) =4$, $\mathbb{V}(Y) =18$.
+Bestimmen Sie den Erwartungswert und die Varianz folgender Zufallsgrößen:
+\begin{enumerate}[a)]
+\item
+$Z_1 = \frac{1}{2} X + \frac{1}{3} Y$
+\item
+$Z_1 = \frac{1}{2} X - \frac{1}{3} Y$
+\item
+$Z_1 = \frac{1}{2} X - \frac{1}{3} X$
+\end{enumerate} 
+(WiSe15/16)
+
+\Aufgabe{3}
+Die Zufallsvariablen $X, Y, Z, X_1, ..... X_{100}$ seien unabhängig mit dem Erwartungswert 5 und der Varianz 20.
+\begin{enumerate}[a)]
+\item
+Berechnen Sie den Erwartungswert und die Varianz von $2\cdot X + 3 \cdot Y - Z$
+\item 
+Berechnen Sie den Erwartungswert und die Varianz von $S:=X_1 + .... + X_{100}$.
+\end{enumerate} 
+(WiSe14/15)
+
+\Aufgabe{5}
+Von einer reellen Zufallsvariable X sei bekannt, dass sie nur die Werte -1,1 und 4 annimmt, mit den Wahrscheinlichkeiten
+$$ P(X=-2) = \frac{1}{4}, \quad P(X = -1) = \frac{1}{8}  \quad P(X = 0) = \frac{1}{8} \quad und \quad P(X=1)=\frac{1}{2} $$
+\begin{enumerate}[a)]
+\item Berechnen Sie die $\mathbb{V}(X)$. Bestimmen Sie dafür $\mathbb{E}(X)$ und $\mathbb{E}(X^2)$.
+\item Skizzieren Sie die Verteilungsfunktion der Zufallsvariablen X und $ Y = -X + 1 $. Berechnen Sie $\mathbb{V}(Y)$ und $\mathbb{E}(Y)$.
+\end{enumerate} 
+
+
+
+\Aufgabe{6}
+Von einer reellen Zufallsvariable X sei bekannt, dass sie nur die Werte -1,1 und 4 annimmt, mit den Wahrscheinlichkeiten
+$$ P(X=-1) = \frac{5}{8}, \quad P(X = 1) = \frac{1}{8}  \quad und  \quad P(X = 4) = \frac{1}{4} $$
+\begin{enumerate}[a)]
+\item Berechnen Sie die $\mathbb{V}(X)$. Bestimmen Sie dafür $\mathbb{E}(X)$ und $\mathbb{E}(X^2)$.
+\item Skizzieren Sie die Verteilungsfunktion der Zufallsvariablen $ Y = -2X + 3 $. Berechnen Sie $\mathbb{V}(Y)$.
+\item Die Zufallsvariable Z sei unabhänging von X und habe die gleiche Verteilung. Bestimmen Sie die Wahrscheinlichkeit $P(X + Z <  0)$ sowie $\mathbb{V}(X + Z  ) $.
+\end{enumerate} 
+(SoSe18/19)
+
+\Aufgabe{7}
+Es sei X eine stetige Zufallsvariable, mit Dichtefunktion:
+\begin{equation}
+   f(x) = \begin{cases}
+     3\cdot x^2, & \text{f"ur }  0 < x < 1\\
+    0 & \text{sonst }  
+   \end{cases}
+\end{equation}
+Bestimmen sie $\mathbb{E}(X)$ und $\mathbb{V}(X)$.
+
+\Aufgabe{8}
+Es sei X eine stetige Zufallsvariable, mit Dichtefunktion:
+\begin{equation}
+   f(x) = \begin{cases}
+     x , & \text{f"ur }  0 < x < 1\\
+     1 , & \text{f"ur }  1 < x < 1.5\\
+    0 & \text{sonst }  
+   \end{cases}
+\end{equation}
+Bestimmen sie $\mathbb{E}(X)$ und $\mathbb{V}(X)$.
+
+
+
+\Aufgabe{9}
+Es sei X eine stetige Zufallsvariable, mit Dichtefunktion:
+\begin{equation}
+   f(x) = \begin{cases}
+     3\cdot x^{-4}, & \text{f"ur }  x > 1\\
+    0 & \text{sonst }  
+   \end{cases}
+\end{equation}
+Bestimmen sie $\mathbb{E}(X)$ und $\mathbb{V}(X)$.
+(SoSe20)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{document}
+

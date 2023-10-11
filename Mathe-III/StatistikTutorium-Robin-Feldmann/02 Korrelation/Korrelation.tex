@@ -1,0 +1,192 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage{fancyhdr}
+\usepackage{fancyheadings}
+\usepackage[ngerman,german]{babel}
+\usepackage{german}
+\usepackage[utf8]{inputenc}
+%\usepackage[latin1]{inputenc}
+\usepackage[active]{srcltx}
+\usepackage{algorithm}
+\usepackage[noend]{algorithmic}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{bbm}
+\usepackage{enumerate}
+\usepackage{graphicx}
+\usepackage{ifthen}
+\usepackage{listings}
+\usepackage{struktex}
+\usepackage{hyperref}
+\usepackage{tikz}
+\usetikzlibrary{positioning,automata}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%% EDIT THIS PART %%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\Fach}{Statistik}
+\newcommand{\Name}{Robin Feldmann}
+\newcommand{\Tutorium}{}
+\newcommand{\Semester}{OHM}
+\newcommand{\KlausurLoesung }{SoSe2020} %  <-- UPDATE ME
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\setlength{\parindent}{0em}
+\topmargin -1.0cm
+\oddsidemargin 0cm
+\evensidemargin 0cm
+\setlength{\textheight}{9.2in}
+\setlength{\textwidth}{6.0in}
+
+%%%%%%%%%%%%%%%
+%% Aufgaben-COMMAND
+\newcommand{\Aufgabe}[1]{
+  {
+  \vspace*{0.5cm}
+  \textsf{\textbf{Aufgabe #1}}
+  \vspace*{0.2cm}
+  
+  }
+}
+
+\newcommand{\Definition}[1]{
+  {
+  \vspace*{0.5cm}
+  \textsf{\textbf{#1}}
+  \vspace*{0.2cm}
+  
+  }
+}
+
+%%%%%%%%%%%%%%
+\hypersetup{
+    pdftitle={\Fach{}: Übungsblatt \KlausurLoesung{}},
+    pdfauthor={\Name},
+    pdfborder={0 0 0}
+}
+
+\lstset{ %
+language=java,
+basicstyle=\footnotesize\tt,
+showtabs=false,
+tabsize=2,
+captionpos=b,
+breaklines=true,
+extendedchars=true,
+showstringspaces=false,
+flexiblecolumns=true,
+}
+
+\title{Übungsblatt Deterministische Endliche Automaten}
+\author{\Name{}}
+
+\begin{document}
+\thispagestyle{fancy}
+\lhead{\sf \large \Fach{} \\ \small \Name{} }
+\rhead{\sf \Semester{} \\  Tutorium\Tutorium{}}
+\vspace*{0.2cm}
+\begin{center}
+\LARGE \sf \textbf{Korrelation}
+\end{center}
+\vspace*{0.2cm}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Insert your solutions here %%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\Definition{Kovarianz}
+Für zwei dimensionale Daten $(x_1,y_1),...,(x_n,y_n)$ ist die empirische Kovarianz definiert als: 
+$$
+cov(x,y) = s_{xy} = \frac{1}{n} \sum^n_{i=1}(x_i - \bar{x})(y_i - \bar{y}) = \bar{xy} - \bar{x}\cdot \bar{y} 
+$$
+
+\Definition{Korrelationskoeffizient}
+Für zwei dimensionale Daten $(x_1,y_1),...,(x_n,y_n)$ ist der Korrelationskoeffizient definiert als: 
+$$
+r_{xy} = \frac{\sum^n_{i=1}(x_i - \bar{x})(y_i - \bar{y})}{\sqrt{\sum^n_{i=1}(x_i - \bar{x})^2 \cdot \sum^n_{i=1}(y_i - \bar{y})^2}} = \frac{s_{xy}}{\sigma_x \sigma_y}
+$$
+
+\Aufgabe{1}
+Hängt die Entfernung vom Stadtzentrum mit den Mietpreisen zusammen?
+$$
+\begin{tabular}[h]{l|lllll}
+Miete in Euro/$ m^2$ & 23 & 17 & 13 & 9  & 7\\
+\hline
+Entfernung in km & 0& 5 &10 & 15 & 20 \\
+\end{tabular}
+$$
+Korrelieren die Daten? Geben sie eine Schätzung ab!
+Berechnen sie Mittelwerte, Kovarianz und Korrelation.
+
+\Aufgabe{2}
+Vorsicht bei der Interpreration:
+Hängt die Anzahl der existierenden Piraten mit der globalen Durchschnittstemperatur zusammen?$$
+\begin{tabular}[h]{l|llll}
+Jahr & 1820 & 1880 & 1940 & 2000 \\
+\hline
+Anzahl Piraten (in tausend)& 35 & 20 & 5 & 0.02 \\
+\hline
+Globale Durschnittstemp in C & 14.2 & 14.7 &15.2 & 16 \\
+\end{tabular}
+$$
+Korrelieren die Daten? Geben sie eine Schätzung ab!
+Berechnen sie Mittelwerte, Kovarianz und Korrelation.
+
+
+\Aufgabe{3}
+Statistische Umfragen unter Frisören ergaben folgende Werte.
+$$
+\begin{tabular}[h]{l|llll}
+Alter in Jahren & 20 & 36 & 56 & 73 \\
+\hline
+Graue Haare in \% & 0& 15 & 46 & 83 \\
+\end{tabular}
+$$
+Korrelieren die Daten? Geben sie eine Schätzung ab!
+Berechnen sie Mittelwerte, Kovarianz und Korrelation.
+
+\Aufgabe{4}
+Statistische Umfragen unter Frisören ergaben folgende Werte.
+$$
+\begin{tabular}[h]{l|llll}
+Alter in Jahren & 20 & 36 & 56 & 73 \\
+\hline
+Anzahl Haare (in Tausend) &  100 & 75 & 50 & 20 \\
+\end{tabular}
+$$
+Korrelieren die Daten? Geben sie eine Schätzung ab!
+Berechnen sie Mittelwerte, Kovarianz und Korrelation.
+
+\Aufgabe{5}
+Statistische Umfragen unter Frisören ergaben folgende Werte.
+$$
+\begin{tabular}[h]{l|llll}
+Alter in Jahren & 20 & 36 & 56 & 73 \\
+\hline
+Flausen im Kopf &  42 & 13 & 11 & 65 \\
+\end{tabular}
+$$
+Korrelieren die Daten? Geben sie eine Schätzung ab!
+Berechnen sie Mittelwerte, Kovarianz und Korrelation.
+
+
+
+
+\Aufgabe{6}
+Gegeben sei die folgende zweidimensionale Stichprobe zur Abhängigkeit der Dichte D (in Gramm pro Liter) von der Temperatur T (in Grad Celsius) bei trockener Luft:
+$$
+\begin{tabular}[h]{l|lllll}
+T & -20 & -10 & 0 & 10 & 20 \\
+\hline
+D & 1.39 & 1.34 & 1.29 & 1.25 & 1.20 \\
+\end{tabular}
+$$
+Berechne den Korrelationskoeffizienten $r_{TD}$.
+ (SoSe16 Aufgabe 2).
+ 
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{document}
+

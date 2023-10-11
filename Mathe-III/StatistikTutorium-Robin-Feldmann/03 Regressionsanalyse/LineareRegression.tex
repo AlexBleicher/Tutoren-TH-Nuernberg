@@ -1,0 +1,205 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage{fancyhdr}
+\usepackage{fancyheadings}
+\usepackage[ngerman,german]{babel}
+\usepackage{german}
+\usepackage[utf8]{inputenc}
+%\usepackage[latin1]{inputenc}
+\usepackage[active]{srcltx}
+\usepackage{algorithm}
+\usepackage[noend]{algorithmic}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{bbm}
+\usepackage{enumerate}
+\usepackage{graphicx}
+\usepackage{ifthen}
+\usepackage{listings}
+\usepackage{struktex}
+\usepackage{hyperref}
+\usepackage{tikz}
+\usetikzlibrary{positioning,automata}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%% EDIT THIS PART %%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\Fach}{Statistik}
+\newcommand{\Name}{Robin Feldmann}
+\newcommand{\Tutorium}{}
+\newcommand{\Semester}{OHM}
+\newcommand{\KlausurLoesung }{SoSe2020} %  <-- UPDATE ME
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\setlength{\parindent}{0em}
+\topmargin -1.0cm
+\oddsidemargin 0cm
+\evensidemargin 0cm
+\setlength{\textheight}{9.2in}
+\setlength{\textwidth}{6.0in}
+
+%%%%%%%%%%%%%%%
+%% Aufgaben-COMMAND
+\newcommand{\Aufgabe}[1]{
+  {
+  \vspace*{0.5cm}
+  \textsf{\textbf{Aufgabe #1}}
+  \vspace*{0.2cm}
+  
+  }
+}
+
+\newcommand{\Definition}[1]{
+  {
+  \vspace*{0.5cm}
+  \textsf{\textbf{#1}}
+  \vspace*{0.2cm}
+  
+  }
+}
+
+%%%%%%%%%%%%%%
+\hypersetup{
+    pdftitle={\Fach{}: Übungsblatt \KlausurLoesung{}},
+    pdfauthor={\Name},
+    pdfborder={0 0 0}
+}
+
+\lstset{ %
+language=java,
+basicstyle=\footnotesize\tt,
+showtabs=false,
+tabsize=2,
+captionpos=b,
+breaklines=true,
+extendedchars=true,
+showstringspaces=false,
+flexiblecolumns=true,
+}
+
+\title{Übungsblatt Deterministische Endliche Automaten}
+\author{\Name{}}
+
+\begin{document}
+\thispagestyle{fancy}
+\lhead{\sf \large \Fach{} \\ \small \Name{} }
+\rhead{\sf \Semester{} \\  Tutorium\Tutorium{}}
+\vspace*{0.2cm}
+\begin{center}
+\LARGE \sf \textbf{Regression}
+\end{center}
+\vspace*{0.2cm}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Insert your solutions here %%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\Definition{Lösungsskizze}
+Legen sie mit Hilfe der Methode der kleinsten quadratischen Abweichung von Gauß eine Kurve der Form
+$$
+y = f_{a,b}(x) 
+$$
+durch die Punkte $(x_1,y_1),....,(x_n,y_n)$. Bestimmen sie also a und b.
+\\
+
+Bestimme die quadratische Abweichung:
+$$
+Q(a,b) = \sum_{i=1}^n (y_i - f_{a,b}(x_i))^2
+$$
+Nach a und b ableiten. Dann gleich Null setzen und so a und b berechnen.
+$$
+\frac{dQ}{da} Q(a,b)=0 
+$$
+$$
+\frac{dQ}{db} Q(a,b)=0
+$$
+\\
+\\
+Falls $ f_{a,b}(x)= a + b\cdot x $:
+\\
+
+
+
+$$b=\frac{cov(x,y)}{var(x)} \text{ und } a= \bar{y} - b \cdot \bar{x} 
+$$
+\\
+Zur Erinnerung: 
+$$
+cov(x,y) = s_{xy} = \frac{1}{n} \sum^n_{i=1}(x_i - \bar{x})(y_i - \bar{y}) = \bar{xy} - \bar{x}\cdot \bar{y} 
+$$
+$$
+Var(  \vec{x}) = \frac{1}{n} \sum^n_{i=1} (x_i- \bar{x} )^2 = \bar{x^2} - \bar{x}^2 
+$$
+
+\Aufgabe{1}
+$$
+\begin{tabular}[h]{l|lll}
+x  & 2 & 1& 3 \\
+\hline
+y& 2 & 1 & 1.5 \\
+\end{tabular}
+$$
+Berechnen Sie eine Gerade$f(x)= a + b\cdot x$ die bezüglich der kleinsten Quadrate diese Punkte optimal annähert.
+Berechnen Sie für diese Funktion sowie die folgenden die quadratische  Abweichung.
+\begin{enumerate}[a)]
+\item
+$y= \frac{1}{3}2^x$
+\item
+$y=-x^2 +4x - 2 $
+\end{enumerate}
+Für eine Kurve $y= a\cdot 2^x$ soll der Parameter a bezüglich der quadratischen Abweichung als optimal bestimmt werden.
+
+
+\Aufgabe{2}
+Gegeben sei die folgende zweidimensionale Stichprobe zur Abhängigkeit der Dichte D (in Gramm pro Liter) von der Temperatur T (in Grad Celsius) bei trockener Luft:
+$$
+\begin{tabular}[h]{l|lllll}
+T & -20 & -10 & 0 & 10 & 20 \\
+\hline
+D & 1.39 & 1.34 & 1.29 & 1.25 & 1.20 \\
+\end{tabular}
+$$
+Man bestimme die Ausgleichsgerade $D=aT + b$, d.h. die Koeffizienten a und b.
+ (SoSe16 Aufgabe 2).
+ 
+\Aufgabe{3}
+\begin{enumerate}[a)]
+\item Legen Sie mit Hilfe der Methode der kleinsten quadratischen Abweichung von Gauß eine Kurve der Form $y=a\cdot 2^x$ durch die drei Punkte $(0,2),(1,4),(2,13)\in \mathbb{R}^2$. Bestimmen Sie also a.
+\item Legt man mit derselben Methode eine Kurve der Form $y=c\cdot x$ durch obige drei Punkte, so erhält man $c=6$. Welche der beiden Kurven passt besser im Sinne der quadratischen Abweichung?
+\end{enumerate}
+(Aus WiSe 14/15) 
+
+
+\Aufgabe{4}
+\begin{enumerate}[a)]
+\item Legen Sie mit Hilfe der Methode der kleinsten quadratischen Abweichung von Gauß eine Kurve der Form $y=a\cdot 3^x$ durch die drei Punkte $(0,1),(1,4),(2,13)\in \mathbb{R}^2$. Bestimmen Sie also a.
+\item Legt man mit derselben Methode eine Kurve der Form $y=c\cdot x$ durch obige drei Punkte, so erhält man $c=6$. Welche der beiden Kurven passt besser im Sinne der quadratischen Abweichung?
+\end{enumerate}
+(Aus WiSe 15/16) 
+
+\Aufgabe{5}
+Bei einer Messung ergaben sich für die x-Werte $x_1 =1, x_2=2, x_3=3 $ und für die y-Werte $y_1=3, y_2=7, y_3=10$.
+\begin{enumerate}[a)]
+\item
+Legen Sie mit Hilfe der Gaußeschen Methode der kleinsten quadratischen Abweichung eine Kurve der Form $y=ax^2 + 2$ durch diese Punkte. Berechnen Sie also a.
+\item
+Legt man mit der selben Methode eine Kurve der Form $y=bx+2$ durch diese Punkte, so ergibt sich $b=2.5$. Welche der beiden Kurven passt im Sinne der kleinsten quadratischen Abweichung besser? Begründung! 
+\end{enumerate}
+(Aus SoSe18 Aufgabe 1.)
+
+\Aufgabe{6}
+Bei einer Messung ergaben sich für die x-Werte
+$$
+x_1= -2, x_2=-1, x_3=1, x_4=2
+$$
+und für die y-Werte
+$$
+y_1=5, y_2=4, y_3=1 \text{ und } y_4=7
+$$
+Legen sie mit Hilfe der Gaußschen Methode der kleinsten quadratischen Abweichung eine Kurve der Form $y=ax^3 +b$ durch diese Punkte. Bestimmen sie also die Parameter a und b.
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{document}
+

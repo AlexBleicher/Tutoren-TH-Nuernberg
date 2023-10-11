@@ -1,0 +1,176 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage{fancyhdr}
+\usepackage{fancyheadings}
+\usepackage[ngerman,german]{babel}
+\usepackage{german}
+\usepackage[utf8]{inputenc}
+%\usepackage[latin1]{inputenc}
+\usepackage[active]{srcltx}
+\usepackage{algorithm}
+\usepackage[noend]{algorithmic}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{bbm}
+\usepackage{enumerate}
+\usepackage{graphicx}
+\usepackage{ifthen}
+\usepackage{listings}
+\usepackage{struktex}
+\usepackage{hyperref}
+\usepackage{tikz}
+\usetikzlibrary{positioning,automata}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%% EDIT THIS PART %%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\Fach}{Statistik}
+\newcommand{\Name}{Robin Feldmann}
+\newcommand{\Tutorium}{}
+\newcommand{\Semester}{OHM}
+\newcommand{\KlausurLoesung }{SoSe2020} %  <-- UPDATE ME
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\setlength{\parindent}{0em}
+\topmargin -1.0cm
+\oddsidemargin 0cm
+\evensidemargin 0cm
+\setlength{\textheight}{9.2in}
+\setlength{\textwidth}{6.0in}
+
+%%%%%%%%%%%%%%%
+%% Aufgaben-COMMAND
+\newcommand{\Aufgabe}[1]{
+  {
+  \vspace*{0.5cm}
+  \textsf{\textbf{Aufgabe #1}}
+  \vspace*{0.2cm}
+  
+  }
+}
+
+\newcommand{\Definition}[1]{
+  {
+  \vspace*{0.5cm}
+  \textsf{\textbf{#1}}
+  \vspace*{0.2cm}
+  
+  }
+}
+
+%%%%%%%%%%%%%%
+\hypersetup{
+    pdftitle={\Fach{}: Übungsblatt \KlausurLoesung{}},
+    pdfauthor={\Name},
+    pdfborder={0 0 0}
+}
+
+\lstset{ %
+language=java,
+basicstyle=\footnotesize\tt,
+showtabs=false,
+tabsize=2,
+captionpos=b,
+breaklines=true,
+extendedchars=true,
+showstringspaces=false,
+flexiblecolumns=true,
+}
+
+\title{Übungsblatt Deterministische Endliche Automaten}
+\author{\Name{}}
+
+\begin{document}
+\thispagestyle{fancy}
+\lhead{\sf \large \Fach{} \\ \small \Name{} }
+\rhead{\sf \Semester{} \\  Tutorium\Tutorium{}}
+\vspace*{0.2cm}
+\begin{center}
+\LARGE \sf \textbf{ML-Schätzung}
+\end{center}
+\vspace*{0.2cm}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Insert your solutions here %%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Gegeben ist eine Zufallsvariable X mit einer Verteilung $f_{\lambda}(x)$ die von dem Parameter $\lambda$ abhängt und eine Stichprobe unabhängiger Messwerte $x_1, .... x_n$. Ziel: Bestimme den Parameter $\lambda$ so, dass die Stichprobe am Wahrscheinlichsten ist. 
+
+
+
+\Definition{Wahrscheinlichkeit der Stichprobe}
+$$L(\lambda) = f_{\lambda}(x_1)\cdot f_{\lambda}(x_2)\cdot .... \cdot f_{\lambda}(x_n) $$
+
+\Definition{Maximum der Wahrscheinlichkeit}
+Ableiten und Null setzen.
+$$ L(\lambda)' = 0 $$
+
+\Definition{Log-Likelihood-Trick}
+
+$$ l(\lambda) = ln( L(\lambda)) $$ 
+
+Ableiten und Null setzen geht oft einfacher und gibt das gleiche Ergebnis, da der Logarithmus streng monoton steigend ist.
+$$ l(\lambda)' = 0 $$
+
+ 
+ \Aufgabe{1}
+Die stetige Zufallsvariable X besitze die Dichte:
+\begin{equation}
+  f(x) = \begin{cases}
+    \lambda \cdot e^{-\lambda x} & \text{f"ur } x > 0 \\
+    0 & \text{sonst }  
+   \end{cases}
+\end{equation}
+Eine Stichprobe ergab für X die Werte $x_1=13,x_2=9, x_3=8,x_4=10$.
+Berechnen Sie den Maximum-Likeilhood Schätzer für $\lambda$.
+
+
+\Aufgabe{2}
+Die stetige Zufallsvariable X besitze die Dichte:
+\begin{equation}
+  f(x) = \begin{cases}
+    0 & \text{f"ur } x \leq 0 \\
+    c\cdot (x+1)^{-c-1} & \text{sonst }  
+   \end{cases}
+\end{equation}
+Mit $c > 0$.
+Eine Stichprobe ergab für X die Werte $x_1 = 3, x_2=1, x_3= 7$. Berechnen Sie den Maximum-Likeilhood Schätzer für c. (WiSe15/16)
+
+
+\Aufgabe{3}
+Eine stetige Zufallsgröße X habe die Dichte
+\begin{equation}
+  f(x) = \begin{cases}
+   \lambda^5 \cdot \frac{x^4}{4!} \cdot e^{-\lambda x}& \text{f"ur } x \geq 0 \\
+    0 & \text{sonst }  
+   \end{cases}
+\end{equation}
+Man bestimme den Maximum-Likelihood-Schätzer, der anhand einer Stichprobe $x_1, ...,x_n$ den Parameter $\lambda$ schätzt. (SoSe16).
+
+
+
+\Aufgabe{4}
+Für eine Zufallsvariable X mit Dichtefunktion
+\begin{equation}
+  f(x) = \begin{cases}
+    \alpha \cdot x^{\alpha - 1} & \text{f"ur }0 < x \leq 1 \\
+    0 & \text{sonst }  
+   \end{cases}
+\end{equation}
+mit $\alpha > 0$ ergab eine Stichprobe die Werte $x_1, ...., x_n$. Bestimmen Sie einen Maximum-Likelihood Schätzer für $\alpha$. (WiSe14/15)
+
+\Aufgabe{5}
+Eine Zufallsvariable X sei stetig verteilt mit der von einem Parameter $\alpha > 0$ abhängigen Dichtefunktion
+\begin{equation}
+  f(x) = \begin{cases}
+    \frac{2x}{\alpha}e^{-\frac{x^2}{\alpha} }& \text{f"ur } x > 0 \\
+    0 & \text{sonst }  
+   \end{cases}
+\end{equation}
+
+Bestimmen Sie den Maximum-Likelihood-Schätzer, der aus einer Zufallsstichprobe $x_1, ...,x_n$ den Parameter $\alpha$ schätzt. (SoSe18)
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{document}
+

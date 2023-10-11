@@ -1,0 +1,209 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage{fancyhdr}
+\usepackage{fancyheadings}
+\usepackage[ngerman,german]{babel}
+\usepackage{german}
+\usepackage[utf8]{inputenc}
+%\usepackage[latin1]{inputenc}
+\usepackage[active]{srcltx}
+\usepackage{algorithm}
+\usepackage[noend]{algorithmic}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{bbm}
+\usepackage{enumerate}
+\usepackage{graphicx}
+\usepackage{ifthen}
+\usepackage{listings}
+\usepackage{struktex}
+\usepackage{hyperref}
+\usepackage{tikz}
+\usetikzlibrary{positioning,automata}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%% EDIT THIS PART %%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\Fach}{Statistik}
+\newcommand{\Name}{Robin Feldmann}
+\newcommand{\Tutorium}{}
+\newcommand{\Semester}{OHM}
+\newcommand{\KlausurLoesung }{SoSe2020} %  <-- UPDATE ME
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\setlength{\parindent}{0em}
+\topmargin -1.0cm
+\oddsidemargin 0cm
+\evensidemargin 0cm
+\setlength{\textheight}{9.2in}
+\setlength{\textwidth}{6.0in}
+
+%%%%%%%%%%%%%%%
+%% Aufgaben-COMMAND
+\newcommand{\Aufgabe}[1]{
+  {
+  \vspace*{0.5cm}
+  \textsf{\textbf{Aufgabe #1}}
+  \vspace*{0.2cm}
+  
+  }
+}
+
+\newcommand{\Definition}[1]{
+  {
+  \vspace*{0.5cm}
+  \textsf{\textbf{#1}}
+  \vspace*{0.2cm}
+  
+  }
+}
+
+%%%%%%%%%%%%%%
+\hypersetup{
+    pdftitle={\Fach{}: Übungsblatt \KlausurLoesung{}},
+    pdfauthor={\Name},
+    pdfborder={0 0 0}
+}
+
+\lstset{ %
+language=java,
+basicstyle=\footnotesize\tt,
+showtabs=false,
+tabsize=2,
+captionpos=b,
+breaklines=true,
+extendedchars=true,
+showstringspaces=false,
+flexiblecolumns=true,
+}
+
+\title{Übungsblatt Deterministische Endliche Automaten}
+\author{\Name{}}
+
+\begin{document}
+\thispagestyle{fancy}
+\lhead{\sf \large \Fach{} \\ \small \Name{} }
+\rhead{\sf \Semester{} \\  Tutorium\Tutorium{}}
+\vspace*{0.2cm}
+\begin{center}
+\LARGE \sf \textbf{Grundbegriffe der Statistik}
+\end{center}
+\vspace*{0.2cm}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Insert your solutions here %%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\Definition{Arithmetisches Mittel}
+Für Daten $x_1,...,x_n$ ist das Arithmetische Mittel definiert als 
+$$
+\bar{x} = \frac{1}{n}\sum^n_{i=1} x_i = \frac{1}{n}(x_1 + ... + x_n)
+$$
+
+\Definition{Geometrisches Mittel}
+Für Daten $x_1,...,x_n$ ist das Geometrische Mittel definiert als 
+$$
+\bar{x}_{geom} = \sqrt[n]{x_1 \cdot x_2 \cdot \cdot \cdot x_n}
+$$
+
+\Definition{Harmonisches Mittel}
+Für Daten $x_1,...,x_n$ ist das Harmonische Mittel definiert als 
+$$
+\bar{x}_{harm} =( \frac{1}{n}\sum^n_{i=1} x_i^{-1} )^{-1} = n \cdot (\frac{1}{x_1} + ... +\frac{1}{x_n})^{-1}
+$$
+
+\Definition{Modus}
+Für Daten $x_1,...,x_n$ ist der Modus definiert als der am häufigsten auftretende Wert.
+
+\Definition{Median}
+Für aufsteigend sortierte Daten $x_1,...,x_n$ ist der Median definiert als $x_k$ mit $k= \lceil \frac{1}{2} n \rceil $.
+
+\Definition{p-Quantil}
+Für aufsteigend sortierte Daten $x_1,...,x_n$ ist das p-Quantil definiert als $x_p = x_k$ mit $k= \lceil p \cdot n \rceil $.
+
+\Definition{Spannweite}
+Für  Daten $x_1,...,x_n$ ist die Spannweite definiert als 
+$$
+R(  \vec{x}) = \underset{1 \leq i \leq n}{\max} x_i - \underset{1 \leq i \leq n}{\min} x_i
+$$
+
+\Definition{Quartilsabstand}
+Für  Daten $x_1,...,x_n$ ist der Quartilsabstand definiert als 
+$$
+QA(  \vec{x}) = x_{0.75}-x_{0.25}$$
+
+\Definition{Varianz}
+Für  Daten $x_1,...,x_n$ ist die Varianz definiert als 
+$$
+Var(  \vec{x}) = \frac{1}{n} \sum^n_{i=1} (x_i- \bar{x} )^2 = \bar{x^2} - \bar{x}^2 $$
+
+\Definition{Standardabweichung}
+Für  Daten $x_1,...,x_n$ ist die Standardabweichung definiert als 
+$$
+\sigma(  \vec{x}) = \sqrt{Var(\bar{x})}$$
+
+\Aufgabe{1}
+Zwei Rennfahrer fahren ein Wettrennen mit drei identischen Runden. Nach jeder Runde wird die Geschwindigkeit in km/h veröffentlicht.
+$$
+\begin{tabular}[h]{l|lll}
+Runde & 1 & 2 & 3  \\
+\hline
+Rennfahrer A & 149 & 162 & 132 \\
+\hline
+Rennfahrer B & 143 & 193 & 98 \\
+\end{tabular}
+$$
+Berechnen sie die durchschnittliche Geschwindigkeit mit dem Harmonischen Mittel und bestimmen sie welcher Fahrer gewinnt.
+
+\Aufgabe{2} 
+Wissenschaftler finden in einem gerade eingeschlagenem Kometen eine unbekannten organischen Zellmasse, die sich schnell vermehrt.
+Bei einer ursprünglichen Masse von einem Kilogramm messen die Wissenschaftler alle 10 Minuten die Wachstumsrate:
+$$
+\begin{tabular}[h]{l|lllll}
+T in min& 0 & 10 & 20 & 30 & 40 \\
+\hline
+Wachstumsrate & 1.56 & 1.45 & 1.73 & 1.45 & 1.62 \\
+\end{tabular}
+$$
+Berechnen sie als Annäherung das geometrische Mittel und schätzen sie mit diesem die entstandene Masse nach einem Tag ab.
+
+\Aufgabe{3}
+Die drei benachbarten Inselstaaten Lummerland, Taka-Tuka-Land und Liliput haben alle 10 Einwohner und unterscheiden sich in ihrer Wirtschaftspolitik sehr stark. Zum Jahres Zensus geben alle Bewohner ihr Jahreseinkommen in Tausend Dollar an.
+$$
+\begin{tabular}[h]{l|llllllllll}
+Lummerland & 5 & 6 & 6 & 7 & 7 & 8 &9 &9 &147 &198 \\
+\hline
+Taka-Tuka-Land  & 5 & 6 & 6 & 7 & 45 & 46 &51 &52 &56 &57 \\
+\hline
+Liliput  & 5 & 6 & 21& 22& 23& 24&26 &67 &69 &75 \\
+\end{tabular}
+$$
+Berechnen sie für alle drei Inselstaaten jeweils das Arithmetische Mittel, den Median, die 0.25 und 0.75 Quantile. Finden sie für jeden Inselstaat jeweils einen Wert, der das Wirtschaftssystem dieses Staates als den anderen überlegen darstellt.
+Berechnen sie nun jeweils die Spannweite, den Quartilsabstand und die Varianz und überlegen sie deren Aussagekraft.
+
+
+
+\Aufgabe{4}
+Gegeben sei die folgende zweidimensionale Stichprobe zur Abhängigkeit der Dichte D (in Gramm pro Liter) von der Temperatur T (in Grad Celsius) bei trockener Luft:
+$$
+\begin{tabular}[h]{l|lllll}
+T & -20 & -10 & 0 & 10 & 20 \\
+\hline
+D & 1.39 & 1.34 & 1.29 & 1.25 & 1.20 \\
+\end{tabular}
+$$
+Berechnen Sie die arithmetischen Mittel $ \bar{T}$ und $\bar{D}$ sowie die Standardabweichungen $s_T$ und $s_D$.
+ (SoSe16 Aufgabe 2).
+ 
+ 
+\Aufgabe{5}
+Die Lebensdauer T(=Zeit bis zum Ausfall) von Halogenlampen werde als normalverteilt angenommen. Die Überprüfung von vier Halogenlampen eines bestimmten Typs ergab Lebensdauern von
+$$ 1720, 2100, 1800 \ und  \ 2180\ (Stunden) 
+$$
+Berechnen Sie Mittelwert und Standardabweichung von T.
+ (WiSe14/15 Aufgabe 5).
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{document}
+

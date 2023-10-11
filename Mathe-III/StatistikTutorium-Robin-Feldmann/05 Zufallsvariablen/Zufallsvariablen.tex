@@ -1,0 +1,220 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage{fancyhdr}
+\usepackage{fancyheadings}
+\usepackage[ngerman,german]{babel}
+\usepackage{german}
+\usepackage[utf8]{inputenc}
+%\usepackage[latin1]{inputenc}
+\usepackage[active]{srcltx}
+\usepackage{algorithm}
+\usepackage[noend]{algorithmic}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{bbm}
+\usepackage{enumerate}
+\usepackage{graphicx}
+\usepackage{ifthen}
+\usepackage{listings}
+\usepackage{struktex}
+\usepackage{hyperref}
+\usepackage{tikz}
+\usetikzlibrary{positioning,automata}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%% EDIT THIS PART %%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newcommand{\Fach}{Statistik}
+\newcommand{\Name}{Robin Feldmann}
+\newcommand{\Tutorium}{}
+\newcommand{\Semester}{OHM}
+\newcommand{\KlausurLoesung }{SoSe2020} %  <-- UPDATE ME
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\setlength{\parindent}{0em}
+\topmargin -1.0cm
+\oddsidemargin 0cm
+\evensidemargin 0cm
+\setlength{\textheight}{9.2in}
+\setlength{\textwidth}{6.0in}
+
+%%%%%%%%%%%%%%%
+%% Aufgaben-COMMAND
+\newcommand{\Aufgabe}[1]{
+  {
+  \vspace*{0.5cm}
+  \textsf{\textbf{Aufgabe #1}}
+  \vspace*{0.2cm}
+  
+  }
+}
+
+\newcommand{\Definition}[1]{
+  {
+  \vspace*{0.5cm}
+  \textsf{\textbf{#1}}
+  \vspace*{0.2cm}
+  
+  }
+}
+
+%%%%%%%%%%%%%%
+\hypersetup{
+    pdftitle={\Fach{}: Übungsblatt \KlausurLoesung{}},
+    pdfauthor={\Name},
+    pdfborder={0 0 0}
+}
+
+\lstset{ %
+language=java,
+basicstyle=\footnotesize\tt,
+showtabs=false,
+tabsize=2,
+captionpos=b,
+breaklines=true,
+extendedchars=true,
+showstringspaces=false,
+flexiblecolumns=true,
+}
+
+\title{Übungsblatt Deterministische Endliche Automaten}
+\author{\Name{}}
+
+\begin{document}
+\thispagestyle{fancy}
+\lhead{\sf \large \Fach{} \\ \small \Name{} }
+\rhead{\sf \Semester{} \\  Tutorium\Tutorium{}}
+\vspace*{0.2cm}
+\begin{center}
+\LARGE \sf \textbf{Zufallsvariablen}
+\end{center}
+\vspace*{0.2cm}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%% Insert your solutions here %%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\Definition{Zufallsvariable}
+Eine Abbildung X, mit:
+$$ X: \Omega \rightarrow \mathbb{R}, \quad \omega \rightarrow X(\omega)$$
+heißt Zufallsvariable auf $\Omega$.
+
+\Definition{Verteilungsfunktion}
+Sei X eine Zufallsvariable auf $\Omega$ dann heißt die Abbildung:
+$$ F: \mathbb{R} \rightarrow [0;1 ], \quad F:=\mathbb{P}(X(\omega)\leq x) =: \mathbb{P}(X\leq x)$$
+Verteilungsfunktion F von X. Eine Verteilungsfunktion ist immer monoton wachsend:
+$$ x_1 \le x_2 \Rightarrow F(x_1) \le F(x_2) $$
+und es gilt:
+$$ \lim\limits_{x \to -\infty} F(x) = 0, \quad \lim\limits_{x \to \infty} F(x) = 1 $$
+
+\Definition{Diskrete Zufallsvariablen: Wahrscheinlichkeitsfunktion}
+Die Wahrscheinlichkeitsfunktion gibt die Wahrscheinlichkeit einzelner Ausprägungen an:
+$$f(x) := \mathbb{P}(X=x) =  \lim\limits_{h \to^>0} F(x + h ) -   \lim\limits_{h \to^>0} F(x - h ) $$
+
+\Definition{Stetige Zufallsvariablen: Wahrscheinlichkeitsdichte}
+Wahrscheinlichkeitsdichte ist die Ableitung der Verteilungsfunktion:
+$$f(x) := F(x)'$$ 
+und hat die Eigenschaften:
+$$ f(x) \geq 0, \quad  \int_{-\infty}^{\infty} f(x)dx = 1$$
+
+\Definition{Interpretation}
+Die Wahrscheinlichkeit, dass die Zufallsvariable X einen Wert kleiner oder gleich $a$ annimmt:
+$$ \mathbb{P}(X \leq  a)= F(a) =  \int_{-\infty}^{a} f(x)dx$$
+Die Wahrscheinlichkeit, dass die Zufallsvariable X einen Wert größer $a$ annimmt:
+$$ \mathbb{P}(a < X)=  1 -   \mathbb{P}(X \leq  a)  = 1- F(a) = 1 -  \int_{-\infty}^{a} f(x)dx$$
+Die Wahrscheinlichkeit, dass die Zufallsvariable X einen Wert zwischen $a$ und $b$ annimmt:
+$$ \mathbb{P}(a < X \leq b)= F(b) - F(a) = \int_{a}^{b} f(x)dx$$
+
+
+\Aufgabe{1}
+Bei einem Münzwurfspiel kann man Geld gewinnen. Es werden zwei Münzen geworfen und die Werte addiert. Kopf entspricht dabei 0 und Zahl 1.
+Bei einer Summe von 0 verliert der Spieler 1€, bei einer Summe von 1 gibt es weder Verlust noch Gewinn. Bei einer Summe von 2 gewinnt der Spieler 1€.
+Bestimme und zeichne Verteilungsfunktion und Wahrscheinlichkeitsfunktion.
+
+\Aufgabe{2}
+Es sei X eine stetige Zufallsvariable, mit Verteilungsfunktion:
+\begin{equation}
+  F(x) = \begin{cases}
+     0 & \text{f"ur } x \leq 0 \\
+      \frac{x}{10}  & \text{f"ur } 0  < x \leq 10 \\
+    1 & \text{sonst }  
+   \end{cases}
+\end{equation}
+Zeichne die Verteilungsfunktion. Bestimme und zeichne die zugehörige Dichtefunktion $f$. Berechne $\mathbb{P}(X \leq 10), \mathbb{P}(X \leq 5),\mathbb{P}(X > 10),\mathbb{P}(5 < X \leq 7)$.
+
+\Aufgabe{3}
+Die Dichte f einer stetigen Zufallsgröße X sei gegeben durch 
+\begin{equation}
+   f(x) = \begin{cases}
+     \alpha & \text{f"ur } 1 \leq x \le 3 \\
+     \frac{1}{2} & \text{f"ur } 3 \leq x \le 4\\
+    0 & \text{sonst }  
+   \end{cases}
+\end{equation}
+Bestimme $ \alpha$ und skizziere $f$ .
+Bestimme und skizziere die Verteilungsfunktion $F$ von $X$.
+Berechne $\mathbb{P}(X \leq 3)$. \\
+
+\Aufgabe{4}
+Bei einem Würfelspiel gewinnt bzw. verliert der Spieler immer die Differenz zur Vier. Würfelt der Spieler zum Beispiel eine Vier gewinnt er 0€, würfelt er eine 1 so verliert er 3€, würfelt er aber eine 6 so gewinnt er 2€. Bestimme und zeichne Verteilungsfunktion und Wahrscheinlichkeitsfunktion.
+
+
+
+\Aufgabe{5}
+Es sei X eine stetige Zufallsvariable, mit Verteilungsfunktion:
+\begin{equation}
+  F(x) = \begin{cases}
+     0 & \text{f"ur } x \leq 1 \\
+      \frac{x}{4} -\frac{1}{4}    & \text{f"ur } 1  < x \leq 3 \\
+       \frac{x}{2}  - 1  & \text{f"ur } 3 < x \leq 4 \\
+    1 & \text{sonst }  
+   \end{cases}
+\end{equation}
+Zeichne die Verteilungsfunktion. Bestimme und zeichne die zugehörige Dichtefunktion $f$. Berechne $\mathbb{P}(X \leq 2), \mathbb{P}(X \leq 3),\mathbb{P}(X > 3),\mathbb{P}(3 < X \leq 4)$.
+
+\Aufgabe{6}
+Es sei X eine stetige Zufallsvariable, für die gilt:
+\begin{equation}
+   \mathbb{P}(X >x) = \begin{cases}
+     x^{-3} & \text{f"ur } x > 1 \\
+    1 & \text{sonst }  
+   \end{cases}
+\end{equation}
+Berechnen Sie die zugehörige Dichtefunktion f.
+(SoSe20)
+
+
+\Aufgabe{7}
+Die Dichte f einer stetigen Zufallsgröße X sei gegeben durch 
+\begin{equation}
+   f(x) = \begin{cases}
+     \alpha & \text{f"ur } 0 \leq x \le 2 \\
+    0 & \text{sonst }  
+   \end{cases}
+\end{equation}
+Bestimme $ \alpha$ und skizziere $f$ .
+Bestimme und skizziere die Verteilungsfunktion $F$ von $X$.
+Berechne $\mathbb{P}(X \leq 1)$. \\
+
+
+
+
+
+\Aufgabe{8}
+Die Dichte f einer stetigen Zufallsgröße X sei gegeben durch 
+\begin{equation}
+   f(x) = \begin{cases}
+     \alpha & \text{f"ur } 0 \leq x \le 4 \\
+     \frac{1}{4} & \text{f"ur } 5 \leq x \le 7 \\
+    0 & \text{sonst }  
+   \end{cases}
+\end{equation}
+Bestimme $ \alpha$ und skizziere $f$ . (Ergebnis: $\alpha = \frac{1}{8}$) \\
+Bestimme und skizziere die Verteilungsfunktion $F$ von $X$. \\
+ (SoSe16).
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\end{document}
+
