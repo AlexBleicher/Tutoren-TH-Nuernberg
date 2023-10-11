@@ -1,7 +1,6 @@
 # Informationen zum Git-Repository
 Dieses Repository hat den Zweck, eure Unterrichtsmaterialien miteinander zu teilen.
-Achtet bitte darauf, dass eure Materialen das Copyright verlieren, sobald diese hier hochgeladen werden. 
-Es ist angedacht, dass jeder seine Materialien hochladen kann, sowie die Materialien der anderen benutzen kann.
+Es ist angedacht, dass sich jeder hier von den beigestellten Materialien inspirieren lassen kann und diese auch, unter Angabe des Erstellers, verwenden darf.
 
 **WICHTIG**: Ladet bitte unter keinen Umstände Altklausuren oder Copyright geschützte Inhalte hoch, die ihr nicht selbst erstellt habt!
 
