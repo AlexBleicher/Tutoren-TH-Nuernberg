@@ -1,57 +1,63 @@
 # Informationen zum Git-Repository
-Dieses Repository hat den Zweck, eure Unterrichtsmaterialien miteinander zu teilen.
-Es ist angedacht, dass sich jeder hier von den beigestellten Materialien inspirieren lassen kann und diese auch, unter Angabe des Erstellers, verwenden darf.
 
-**WICHTIG**: Ladet bitte unter keinen Umstände Altklausuren oder Copyright geschützte Inhalte hoch, die ihr nicht selbst erstellt habt!
+Dieses Repository dient dem Austausch und der Verwaltung von Unterrichtsmaterialien. Jeder ist eingeladen, sich von den bereitgestellten Materialien inspirieren zu lassen und diese unter Angabe des Erstellers zu verwenden.
 
-Eure Datein stellt ihr bitte in den Ordner eures Moduls (falls noch nicht vorhanden, erstellt ihn) unter eurem Namen/Acronym bereit.
+**WICHTIG**: Vermeidet es unbedingt, alte Klausuren oder urheberrechtlich geschützte Inhalte hochzuladen, die nicht von euch selbst erstellt wurden!
+
+Bitte ladet eure Dateien in den entsprechenden Ordner eures Moduls (falls noch nicht vorhanden, erstellt diesen) unter eurem Namen/Acronym hoch.
 
 # GIT GUIDE
-Viele von euch werden vermutlich noch nicht mit git in Kontakt gekommen sein. Das ist kein Problem. Hier ein kleiner Guide für die Command-Line
 
-## Das erste mal git/GitHub?
+Falls ihr noch nicht mit Git in Kontakt gekommen seid, keine Sorge. Hier ist ein kleiner Leitfaden für die Command-Line.
 
-Ihr werdet in eurer Laufbahn als Informatiker früher oder später mit git in Kontakt kommen. Dazu solltet ihr den Umgang damit beherrschen. 
-Falls du noch nie damit gearbeitet hast, ist das ein kleiner Leitfaden.
+## Was ist Git und GitHub?
 
-1. Was ist git?
+1. **Git**: Ein Versionskontrollsystem, das euch ermöglicht, den Verlauf eurer Dateien zu verfolgen und Änderungen rückgängig zu machen.
 
-Git ist ein Versionskontrollprogramm. Ihr könnt euch das so vorstellen: Statt einen Text nach jedem Paragraphen in einer Datei zu speichern, um eure Veränderungen im Blick zu haben, könnt ihr git nutzen. Git übernimmt den Prozess des Speicherns eurer Historie. Text=Code, kann aber auch normaler Plain Text o.ä. sein
+2. **GitHub**: Eine Plattform, um eure Git-Repositories online zu verwalten und mit anderen zu teilen. GitHub bietet viele zusätzliche Features, die für diesen Guide jedoch nicht relevant sind.
 
-2. Was ist GitHub?
+## Wie verbinde ich Git mit GitHub?
 
-GitHub ist eine Plattform, auf der ihr eure lokalen Repositories online verwalten und den Zugang mit anderen teilen könnt. Außerdem bietet die Plattform noch sehr viele weitere Features, die aber für den Gebrauch dieses Repositories irrelevant sind.
+Um Git mit GitHub zu verbinden und eure lokalen Repositories online zu verwalten, befolgt diese Schritte:
 
-3. Wie verbinde ich git mit GitHub?
+1. **SSH-Schlüssel erstellen**:
+   - Führt den Befehl `ssh-keygen -t ed25519` aus, um einen neuen SSH-Schlüssel zu erstellen.
 
-Um git mit GitHub zu verbinden und eure lokalen Repositories verwalten zu können, müsst ihr Folgendes tun (Command-Line):
+2. **SSH-Schlüssel zu GitHub hinzufügen**:
+   - Geht auf GitHub zu eurem Profil >> Settings >> SSH and GPG keys >> New SSH key.
+   - **WICHTIG**: Ladet nur den **öffentlichen Schlüssel** (.pub-Datei) hoch.
+   - Teilt niemals euren privaten Schlüssel!
 
-1. ssh-keypair erstellen : ``ssh-keygen -t ed 25519``
-2. Auf GitHub oben Rechts auf euer Profil >> Settings >> SSH and GPG keys >> New SSH key
-3. **GANZ WICHTIG**: hier ladet ihr euren **PUBLIC KEY** hoch. Das ist die Datei, die mit .pub endet.
-4. Teilt unter keinen Umständen euren Private-Key mit jemand anderem!
-5. Bindet euren ssh-key mit eurem ssh-agent ein.
-- SSH-Agent starten. Unter Linux : ``eval "$(ssh-agent -s)"``
-- ``ssh-add [EUER PRIVATE KEY]``
+3. **SSH-Agent starten und Schlüssel hinzufügen**:
+   - Startet den SSH-Agenten mit `eval "$(ssh-agent -s)"`.
+   - Fügt euren privaten Schlüssel mit `ssh-add [EUER PRIVATE KEY]` hinzu.
 
-Eigentlich seid ihr ab hier schon fertig. Um eure lokalen Reposiories hochzuladen, findet ihr im folgenden noch eine Anleitung.
+## Repository auf eure lokale Maschine klonen
 
-## Repository auf eure lokale Maschine laden
+1. **Fork des Repositories erstellen**:
+   - Geht auf die GitHub-Seite des Repositories und klickt auf "Fork". Dadurch wird eine Kopie des Repositories in eurem eigenen GitHub-Konto erstellt.
 
-1. Initialisiert ein lokales Repository : ``git init .`` (Macht das in einem neuen Ordner)
-2. Fügt das remote Repository eurer Maschine hinzu: ``git remote add origin git@github.com:Pand3ru/Tutoren-TH-Nuernberg.git``
-3. Synchronisiert den Branch ``git branch -M main``
-4. Zieht euch das Repository ``git pull origin main``
-5. ``git push -u origin main``
+2. **Lokales Repository klonen**:
+   - Klont das Repository von eurem Fork mit `git clone git@github.com:[EUER_GITHUB_USERNAME]/Tutoren-TH-Nuernberg.git`.
 
-Jetzt solltet ihr in eurem Ordner den gesamten Inhalt des auf GitHub gehostetem git-Repository haben
+3. **In das Verzeichnis wechseln**:
+   - Wechselt in das Verzeichnis des geklonten Repositories mit `cd Tutoren-TH-Nuernberg`.
 
 ## Ihr seid soziale Menschen und wollt eure Materialien teilen?
 
-1. Pulled nochmal, damit alles am ende gut läuft : ``git pull``
-2. Fügt eure Datein hinzu : ``git add .`` (. bezieht sich auf den gesamten Inhalt des aktuellen Ordners. Stattdessen könnt ihr auch einfach Dateinamen schreiben)
-3. ``git commit -m "Schreibt hier rein, was ihr hinzugefügt/verändert habt. Diese Nachricht ist ganz wichtig!"``
-4. Ladet hoch: ``git push -u origin main`` oder ``git push``
+1. **Pull von der Originalquelle**:
+   - Bevor ihr Änderungen vornehmt, stellt sicher, dass euer Fork aktuell ist: `git pull origin main`.
 
-Jetzt sollten alle eure Datein mit hochgeladen sein
+2. **Änderungen vornehmen**:
+   - Fügt eure Dateien hinzu mit `git add .`.
+   - Committet eure Änderungen mit `git commit -m "Beschreibung der Änderungen"`.
 
+3. **Änderungen in euren Fork pushen**:
+   - Push die Änderungen zu eurem Fork mit `git push origin main`.
+
+4. **Pull Request erstellen**:
+   - Geht auf GitHub zu eurem Fork.
+   - Klickt auf "Compare & pull request".
+   - Fügt eine Beschreibung hinzu und klickt auf "Create pull request", um eure Änderungen zur Überprüfung einzureichen.
+
+Jetzt sollten eure Änderungen in der Original-Repository zur Verfügung stehen, und die Maintainer können diese überprüfen und zusammenführen.
